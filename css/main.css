@@ -2,3 +2,26 @@
     margin-top: -24px;
     float: left;
 }
+.control-group > .radio{
+    margin-right: 18px;
+}
+.control-group{
+    margin-bottom: 9px;
+}
+.input-group{
+    margin-bottom: 2px;
+}
+.well{
+    padding:5px;
+    margin-bottom: 8px;
+}
+.alert{
+    margin-bottom: 8px;
+    padding:15px 8px 8px 15px;
+}
+#growth-search > div{
+    padding:0;
+}
+#growth-search > .function-div{
+    padding-left: 10px;
+}
