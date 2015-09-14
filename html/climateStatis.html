@@ -31,12 +31,13 @@
     <script src="../js/respond.js"></script>
     <![endif]-->
     <style type="text/css">
-		.tables-wrapper .row:first-child {
-		    background-color: #EFF3F8;
-		}
-		.tables-wrapper .row {
-		    margin: 0 !important;
-		}
+        .tables-wrapper .row:first-child {
+            background-color: #EFF3F8;
+        }
+
+        .tables-wrapper .row {
+            margin: 0 !important;
+        }
     </style>
 </head>
 
@@ -88,193 +89,216 @@
     <!-- /section:basics/sidebar -->
     <div class="main-content">
         <div class="page-content">
-           <div class="row">
+            <div class="row">
                 <div class="col-sm-12">
                     <div class="well">
-                        <button class="btn btn-app btn-grey btn-xs">
+                        <button class="btn btn-app btn-grey btn-xs" click-target="#background-container">
                             <i class="ace-icon fa fa-home bigger-160"></i>
                             首页
                         </button>
-                        <button class="btn btn-app btn-purple btn-xs">
+                        <button class="btn btn-app btn-purple btn-xs" click-target="#day-container">
                             <i class="ace-icon fa fa-cloud-upload bigger-160"></i>
-           逐时资料
+                            逐日资料
                         </button>
-                        <button class="btn btn-app btn-pink btn-xs">
+                        <button class="btn btn-app btn-pink btn-xs" click-target="#background-container">
                             <i class="ace-icon fa fa-share bigger-160"></i>
-             逐时资料     
+                            逐月资料
                         </button>
-                        <button class="btn btn-app btn-info btn-xs">
+                        <button class="btn btn-app btn-info btn-xs" click-target="#background-container">
                             <i class="ace-icon fa fa-book bigger-160"></i>
-                             逐月资料  
+                            任意时段
                         </button>
-                                               <button class="btn btn-app btn-info btn-xs">
+                        <button class="btn btn-app btn-info btn-xs" click-target="#background-container">
                             <i class="ace-icon fa fa-book bigger-160"></i>
-            任意时段 
+                            任意时段逐年
                         </button>
                     </div>
                 </div>
             </div>
-          	<div class="tables-wrapper form-inline">
-            <div class="row">
-                <div class="table-header">
-                    <strong>查询结果</strong>
+            <div id="background-container" class="row sub-container">
+                <span class="profile-picture">
+                    <img class="img-responsive"
+                         alt="首页背景图" src="../css/image/background.jpg"></img>
+                </span>
+            </div>
+            <div id="day-container" class="row sub-container form-inline hidden">
+                <div class="widget-box widget-color-blue3">
+                    <div class="widget-header">
+                        <div class="widget-title">逐日资料</div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="row search-div">
+                                <div class="col-sm-5">
+                                    <div class="alert alert-success">
+                                        <span class="badge badge-warning badge-left fly-badge">要素选择</span>
+                                        <div class="control-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">平均气温</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">日照指数</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">相对湿度</span>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">平均地温</span>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最高地温</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最高气温</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">20时雨量</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">极大风速</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">平均气压</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">平均能见度</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最低气温</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">08时雨量</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最大风速</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最低气压</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-field-radio" type="radio" class="ace">
+                                                    <span class="lbl">最低能见度</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="alert alert-success">
+                                        <span class="badge badge-warning badge-left fly-badge">起止日期</span>
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+                                        </div>
+                                        <div class="input-group input-group-sm" style="margin-top:32px;">
+                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="alert alert-success">
+                                        <span class="badge badge-warning badge-left fly-badge">条件查询</span>
+                                        <div class="control-group input-group input-group-sm">
+                                            ≥ <input class="form-control" type="text"/>
+                                        </div>
+                                        <div class="control-group input-group input-group-sm">
+                                            ≤ <input class="form-control " type="text" style="height: 30px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 function-div">
+                                    <div>
+                                        <label>
+                                            <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
+                                            <span class="lbl"> 输出经纬度</span>
+                                        </label>
+                                    </div>
+                                    <button class="btn btn-white btn-default btn-round">
+                                        <i class="ace-icon fa fa-search blue"></i>
+                                        数据查询
+                                    </button>
+                                    <button class="btn btn-white btn-default btn-round">
+                                        <i class="ace-icon fa fa-map-marker green"></i>
+                                        等值线图
+                                    </button>
+                                    <button class="btn btn-white btn-default btn-round">
+                                        <i class="ace-icon fa fa-file-o red2"></i>
+                                        保存结果
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table id="grid-table"></table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="growth-search" style="padding-top: 12px; padding-bottom: 12px;">
-                    <div class="col-sm-5">
-                        <div class="alert alert-success">
-                            <span class="badge badge-warning badge-left fly-badge">要素选择</span>
-							<div class="control-group">
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">平均气温</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">日照指数</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">相对湿度</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">平均地温</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最高地温</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最高气温</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">20时雨量</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">极大风速</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">平均气压</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">平均能见度</span>
-                                    </label>
-                          		  </div>
-							  </div>
-							   <div class="control-group">
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最低气温</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">08时雨量</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最大风速</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最低气压</span>
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input name="form-field-radio" type="radio" class="ace">
-                                        <span class="lbl">最低能见度</span>
-                                    </label>
-                          		  </div>
-							  </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="alert alert-success">
-                            <span class="badge badge-warning badge-left fly-badge">起至日期</span>
-                         	<div class="input-group input-group-sm">
-                                <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
-                            </div>
-                            <div class="input-group input-group-sm">
-                                <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
-                            </div>
-                                  <div style="margin-bottom: 11px;">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="alert alert-success">
-                            <span class="badge badge-warning badge-left fly-badge">条件查询</span>
-						    <div class="control-group input-group input-group-sm">
-								≥ <input class="form-control" type="text" />
-                            </div>
-							<div class="control-group input-group input-group-sm">
-								≤ <input class="form-control " type="text" style="height: 30px;"/>
-                            </div>
-							 <div style="margin-bottom: 10px;">是</div>		
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="alert alert-success">
-                           <span class="badge badge-warning badge-left fly-badge">操作按钮</span>
-                        	<input type="button" value="数据查询"/>
-
-                        </div>
-                    </div>
-                 </div>
-                </div>
-                <table id="grid-table"></table>
-				</div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!--[if !IE]> -->
@@ -322,103 +346,89 @@
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
 <script>
-
-
-	
-
     $(function () {
-    	var grid_selector = "#grid-table";
-		var pager_selector = "#grid-pager";
-		
-		//resize to fit page size
-		$(window).on('resize.jqGrid', function () {
-			$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
-	    })
-		//resize on sidebar collapse/expand
-		var parent_column = $(grid_selector).closest('[class*="col-"]');
-		$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-			if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-				//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
-				setTimeout(function() {
-					$(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-				}, 0);
-			}
-	    });
-		
-		 var now = moment("2015-01-01");
-		var then = moment("2015-02-05");
-		var days = then.diff(now)/86400000;
-		var dayAry =[];
-		dayAry.push(now.format("MM-DD"));
-		for ( var i = 0; i < days; i++) {
-			var c=	now.add(1, 'd');
-			dayAry.push(c.format("MM-DD"));
-		}
-		console.info(dayAry);
-		var grid_data = [ ];
-		
-		for ( var j = 0; j < days+1; j++) {
-			var obj = {};
-			obj.siteNo = "57988";
-			obj.siteName = "乐昌";
-			obj.avg = "-9999";
-			obj.max = "-9999";
-			obj.min = "-9999";
-			for ( var i = 0; i < days+1; i++) {
-				var c= 	dayAry[i];
-				obj[c] = "-9999";
-			}
-			grid_data.push(obj)
-		}
-		   
-		console.info(grid_data);
-	    var colNames =['站号','站名'];
-		for ( var i = 0; i < days+1; i++) {
-			colNames.push(	dayAry[i]);
-		}
-		colNames.push('平均值');
-		colNames.push('最小值');
-		colNames.push('最大值');
-	    
-		console.info(colNames);
-	    
-		var colModels =[
-						{name:'siteNo',index:'siteNo', width:60},
-						{name:'siteName',index:'siteName',width:90 }
-					];
-		for ( var i = 0; i < days+1; i++) {
-			var c= 	dayAry[i];
-			colModels.push({name:c,index:c, width:70});
-		}
-		colModels.push({name:'avg',index:'avg', width:50});
-		colModels.push({name:'max',index:'max', width:50} );
-		colModels.push({name:'min',index:'max', width:50});
-	
-		console.info(colModels);
-    	
-    	jQuery(grid_selector).jqGrid({
-			data: grid_data,
-			datatype: "local",
-			height: 250,
-			colNames:colNames,
-			colModel:colModels, 
-			shrinkToFit :colModels.length > 10 ? false:true,
-			altRows: true,
-			//toppager: true,
-			rownumbers:true,
-	
-			loadComplete : function() {
-				var table = this;
-			}
-	
-		});
-		
-
-	
-
-		$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-
+        //二级菜单切换
+        $("button.btn-app").click(function(){
+            var me = $(this), target = me.attr("click-target");
+            $("div.sub-container").hide();
+            $(target).removeClass("hidden").show();
+            initDayResourceTable();
+        });
     });
+
+    //初始化逐日资料表格
+    function initDayResourceTable(){
+        var grid_selector = "#grid-table";
+        var pager_selector = "#grid-pager";
+
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            $(grid_selector).jqGrid('setGridWidth', $(".search-div").width());
+        })
+
+        var now = moment("2015-01-01");
+        var then = moment("2015-02-05");
+        var days = then.diff(now) / 86400000;
+        var dayAry = [];
+        dayAry.push(now.format("MM-DD"));
+        for (var i = 0; i < days; i++) {
+            var c = now.add(1, 'd');
+            dayAry.push(c.format("MM-DD"));
+        }
+        var grid_data = [];
+
+        for (var j = 0; j < days + 1; j++) {
+            var obj = {};
+            obj.siteNo = "57988";
+            obj.siteName = "乐昌";
+            obj.avg = "-9999";
+            obj.max = "-9999";
+            obj.min = "-9999";
+            for (var i = 0; i < days + 1; i++) {
+                var c = dayAry[i];
+                obj[c] = "-9999";
+            }
+            grid_data.push(obj)
+        }
+
+        var colNames = ['站号', '站名'];
+        for (var i = 0; i < days + 1; i++) {
+            colNames.push(dayAry[i]);
+        }
+        colNames.push('平均值');
+        colNames.push('最小值');
+        colNames.push('最大值');
+
+        var colModels = [
+            {name: 'siteNo', index: 'siteNo', width: 60},
+            {name: 'siteName', index: 'siteName', width: 90}
+        ];
+        for (var i = 0; i < days + 1; i++) {
+            var c = dayAry[i];
+            colModels.push({name: c, index: c, width: 70});
+        }
+        colModels.push({name: 'avg', index: 'avg', width: 50});
+        colModels.push({name: 'max', index: 'max', width: 50});
+        colModels.push({name: 'min', index: 'max', width: 50});
+
+        jQuery(grid_selector).jqGrid({
+            data: grid_data,
+            datatype: "local",
+            height: 220,
+            colNames: colNames,
+            colModel: colModels,
+            shrinkToFit: colModels.length > 10 ? false : true,
+            altRows: true,
+            //toppager: true,
+            rownumbers: true,
+
+            loadComplete: function () {
+                var table = this;
+            }
+
+        });
+        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+    }
 </script>
 </body>
 </html>
