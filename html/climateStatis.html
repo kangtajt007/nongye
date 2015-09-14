@@ -12,6 +12,12 @@
     <!-- page specific plugin styles -->
     <!-- text fonts -->
     <link rel="stylesheet" href="../css/ace-fonts.css"/>
+    <link rel="stylesheet" href="../css/ui.jqgrid.css" />
+    		<link rel="stylesheet" href="../css/datepicker.css" />
+    
+    		<link rel="stylesheet" href="../css/daterangepicker.css" />
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css" />
+    
     <!-- ace styles -->
     <link rel="stylesheet" href="../css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
     <!--[if lte IE 9]>
@@ -24,6 +30,14 @@
     <script src="../js/html5shiv.js"></script>
     <script src="../js/respond.js"></script>
     <![endif]-->
+    <style type="text/css">
+		.tables-wrapper .row:first-child {
+		    background-color: #EFF3F8;
+		}
+		.tables-wrapper .row {
+		    margin: 0 !important;
+		}
+    </style>
 </head>
 
 <body class="no-skin">
@@ -74,7 +88,77 @@
     <!-- /section:basics/sidebar -->
     <div class="main-content">
         <div class="page-content">
+           <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <button class="btn btn-app btn-grey btn-xs">
+                            <i class="ace-icon fa fa-home bigger-160"></i>
+                            首页
+                        </button>
+                        <button class="btn btn-app btn-purple btn-xs">
+                            <i class="ace-icon fa fa-cloud-upload bigger-160"></i>
+           逐时资料
+                        </button>
+                        <button class="btn btn-app btn-pink btn-xs">
+                            <i class="ace-icon fa fa-share bigger-160"></i>
+             逐时资料     
+                        </button>
+                        <button class="btn btn-app btn-info btn-xs">
+                            <i class="ace-icon fa fa-book bigger-160"></i>
+                             逐月资料  
+                        </button>
+                                               <button class="btn btn-app btn-info btn-xs">
+                            <i class="ace-icon fa fa-book bigger-160"></i>
+            任意时段 
+                        </button>
+                    </div>
+                </div>
+            </div>
+          	<div class="tables-wrapper">
+            <div class="row">
+                <div class="table-header">
+                    <strong>查询结果</strong>
+                </div>
+                <div id="growth-search" style="padding-top: 12px; padding-bottom: 12px;">
+                    <div class="col-sm-5">
+                        <div class="alert alert-danger">
+                            <span class="badge badge-warning badge-left fly-badge">要素选择</span>
+							<input type="radio">平均气温  <input type="radio">最高气温
+								<input type="radio">平均气温  <input type="radio">最高气温
+									<input type="radio">平均气温  <input type="radio">最高气温
+										<input type="radio">平均气温  <input type="radio">最高气温
+							
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="alert alert-danger">
+                            <span class="badge badge-warning badge-left fly-badge">起至日期</span>
+                            <div>  <input value="2015-01-01"/></div>
+                          	<div>  <input value="2015-02-05"/></div>
+                          		<div>&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="alert alert-danger">
+                            <span class="badge badge-warning badge-left fly-badge">条件查询</span>
+							<div>&nbsp;</div>
+								<div>&nbsp;</div>
+									<div>&nbsp;</div>
+									
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="alert alert-danger">
+                           <span class="badge badge-warning badge-left fly-badge">操作按钮</span>
+                        	<input type="button" value="数据查询"/>
 
+                        </div>
+                    </div>
+                 </div>
+                </div>
+                <table id="grid-table"></table>
+				</div>
+            </div>
         </div>
     </div>
 </div>
@@ -118,5 +202,109 @@
 <script src="../js/ace/ace.settings-skin.js"></script>
 <script src="../js/ace/ace.widget-on-reload.js"></script>
 <script src="../js/ace/ace.searchbox-autocomplete.js"></script>
+	<script src="../js/date-time/moment.js"></script>
+		<script src="../js/date-time/daterangepicker.js"></script>
+
+<script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
+		<script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
+<script>
+
+
+	
+
+    $(function () {
+    	var grid_selector = "#grid-table";
+		var pager_selector = "#grid-pager";
+		
+		//resize to fit page size
+		$(window).on('resize.jqGrid', function () {
+			$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+	    })
+		//resize on sidebar collapse/expand
+		var parent_column = $(grid_selector).closest('[class*="col-"]');
+		$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+			if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+				//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+				setTimeout(function() {
+					$(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+				}, 0);
+			}
+	    });
+		
+		 var now = moment("2015-01-01");
+		var then = moment("2015-02-05");
+		var days = then.diff(now)/86400000;
+		var dayAry =[];
+		dayAry.push(now.format("MM-DD"));
+		for ( var i = 0; i < days; i++) {
+			var c=	now.add(1, 'd');
+			dayAry.push(c.format("MM-DD"));
+		}
+		console.info(dayAry);
+		var grid_data = [ ];
+		
+		for ( var j = 0; j < days+1; j++) {
+			var obj = {};
+			obj.siteNo = "57988";
+			obj.siteName = "乐昌";
+			obj.avg = "-9999";
+			obj.max = "-9999";
+			obj.min = "-9999";
+			for ( var i = 0; i < days+1; i++) {
+				var c= 	dayAry[i];
+				obj[c] = "-9999";
+			}
+			grid_data.push(obj)
+		}
+		   
+		console.info(grid_data);
+	    var colNames =['站号','站名'];
+		for ( var i = 0; i < days+1; i++) {
+			colNames.push(	dayAry[i]);
+		}
+		colNames.push('平均值');
+		colNames.push('最小值');
+		colNames.push('最大值');
+	    
+		console.info(colNames);
+	    
+		var colModels =[
+						{name:'siteNo',index:'siteNo', width:60},
+						{name:'siteName',index:'siteName',width:90 }
+					];
+		for ( var i = 0; i < days+1; i++) {
+			var c= 	dayAry[i];
+			colModels.push({name:c,index:c, width:70});
+		}
+		colModels.push({name:'avg',index:'avg', width:50});
+		colModels.push({name:'max',index:'max', width:50} );
+		colModels.push({name:'min',index:'max', width:50});
+	
+		console.info(colModels);
+    	
+    	jQuery(grid_selector).jqGrid({
+			data: grid_data,
+			datatype: "local",
+			height: 250,
+			colNames:colNames,
+			colModel:colModels, 
+			shrinkToFit :colModels.length > 10 ? false:true,
+			altRows: true,
+			//toppager: true,
+			rownumbers:true,
+	
+			loadComplete : function() {
+				var table = this;
+			}
+	
+		});
+		
+
+	
+
+		$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+
+    });
+</script>
 </body>
 </html>
