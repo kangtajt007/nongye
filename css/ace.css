@@ -9192,7 +9192,7 @@ input[type=checkbox].ace.ace-switch:checked + .lbl::after {
   color: #98A0A5;
 }
 input[type=checkbox].ace.ace-switch.ace-switch-2 + .lbl::before {
-  content: "YES\a0\a0\a0\a0\a0\a0\a0\a0\a0NO";
+  content: "是\a0\a0\a0\a0\a0\a0\a0\a0\a0否";
 }
 input[type=checkbox].ace.ace-switch.ace-switch-3 + .lbl::after {
   font-family: FontAwesome;
@@ -9267,7 +9267,7 @@ input[type=checkbox].ace.ace-switch.ace-switch-5:checked + .lbl::after {
   color: #848484;
 }
 input[type=checkbox].ace.ace-switch.ace-switch-5 + .lbl::before {
-  content: "YES\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0NO";
+  content: "是\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0否";
 }
 input[type=checkbox].ace.ace-switch.ace-switch-5:checked + .lbl::before {
   text-indent: 8px;
