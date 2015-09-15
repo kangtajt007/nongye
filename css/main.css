@@ -28,3 +28,7 @@
 .search-div > .function-div{
     padding-left: 10px;
 }
+
+.ui-jqgrid-ftable{
+	    border: 1px solid grey;
+}
