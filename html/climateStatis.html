@@ -1206,23 +1206,122 @@
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
-			        data={
-			        	siteName:"平均值",
-			        	avg:days >0? "-9999":"",
-			         	max:days >0? "-9999":"",
-			        	min:days >0? "-9999":""};
-			        handerData(tr,gridTable,data);
-			        if(tr.length >1 )
-			        	return ;
-			        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-			        
-			        data[siteName] = "最小值";
-			        handerData(rowTr,gridTable,data);
-			        data[siteName] = "最大值";
-			        handerData(rowTr1,gridTable,data);
-			        tr.after(rowTr);
-			        tr.after(rowTr1);
+			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
+				        data={
+				        	siteName:"平均值",
+				        	avg:days >0? "-9999":"",
+				         	max:days >0? "-9999":"",
+				        	min:days >0? "-9999":""};
+				        if(tr.length <=1 ){
+				        	handerData(tr,gridTable,data,days,dayAry);	
+					        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
+					        
+					        data["siteName"] = "最小值";
+					        handerData(rowTr,gridTable,data,days,dayAry);
+					        data["siteName"] = "最大值";
+					        handerData(rowTr1,gridTable,data,days,dayAry);
+					   
+					        tr.after(rowTr);
+					        tr.after(rowTr1);
+				        }else{
+				        	handerData(tr[0],gridTable,data,days,dayAry)
+				        }
+			    }
+			});
+			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+    }
+  	 //初始化时段资料表格
+  	function initTimeResourceTable(type){
+  		var dataGrid = 'data-grid-'+type,
+		gridTable ='grid-table-'+type;
+			$('#'+dataGrid).append('<table id="'+gridTable+'" style="height:1px;"></table>');
+			var grid_selector = "#"+gridTable;
+			
+			
+			var startDate = moment($('#'+type+'-container #startDate').val()),
+				endDate = moment($('#'+type+'-container #endDate').val()),
+			    days = endDate.diff(startDate) / 86400000,
+			    dayAry = [],
+			    grid_data = [],
+			    colNames = ['站号', '站名','平均值','常年平均值','距平','排名(大-小)','排名(小-大)','排名年份'],
+			    colModels = [
+			                     {name: 'siteNo', index: 'siteNo', width: 60},
+			                     {name: 'siteName', index: 'siteName', width: 90},
+			                     {name: 'avgVal', index: 'avgVal', width: 70},
+			                     {name: 'yearAvgVal', index: 'yearAvgVal', width: 70},
+			                     {name: 'anomaly', index: 'anomaly', width: 70},
+			                     {name: 'rankMaxMin', index: 'rankMaxMin', width: 70},
+			                     {name: 'rankMinMax', index: 'rankMinMax', width: 70},
+			                     {name: 'rankYear', index: 'rankMinMax', width: 70}
+			                 ];
+			
+			 //获取时间数组   
+			dayAry.push(startDate.format("MM-DD"));
+			for (var i = 0; i < days; i++) {
+			    var c = startDate.add(1, 'd');
+			    dayAry.push(c.format("MM-DD"));
+			}
+			//设置自定义数据
+			 var userData = {};
+			 userData.siteNo = "";
+			 userData.siteName = "平均值";
+			 userData.avg = "";
+			 userData.max = "";
+			 userData.min = ""; 
+			   
+			
+			//设置展示数据
+			for (var j = 0; j < days + 1; j++) {
+			    var obj = {};
+			    obj.siteNo = "57988";
+			    obj.siteName = "乐昌";
+			    obj.avgVal = "-9999";
+			    obj.anomaly = "-9999";
+			    obj.yearAvgVal = "-9999";
+			    obj.rankMaxMin = "-9999";
+			    obj.rankMinMax = "-9999";
+			    obj.rankYear = "-9999";
+			    grid_data.push(obj)
+			}
+			
+			
+			
+			//数据
+			$(grid_selector).html();
+			jQuery(grid_selector).jqGrid({
+			    data: grid_data,
+			    datatype: "local",
+			    height: 220,
+			    colNames: colNames,
+			    colModel: colModels,
+			    shrinkToFit: colModels.length > 10 ? false : true,
+			    altRows: true,
+			    //toppager: true,
+			    rownumbers: true,
+			    footerrow: true,
+			    userData:userData,
+			    userDataOnFooter: true, 
+			    gridComplete: function () {
+			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
+				        data={
+				        	siteName:"平均值",
+				        	avg:days >0? "-9999":"",
+				         	max:days >0? "-9999":"",
+				        	min:days >0? "-9999":""};
+				        if(tr.length <=1 ){
+				        	handerData(tr,gridTable,data,days,dayAry);	
+					        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
+					        
+					        data["siteName"] = "最小值";
+					        handerData(rowTr,gridTable,data,days,dayAry);
+					        data["siteName"] = "最大值";
+					        handerData(rowTr1,gridTable,data,days,dayAry);
+					   
+					        tr.after(rowTr);
+					        tr.after(rowTr1);
+				        }else{
+				        	handerData(tr[0],gridTable,data,days,dayAry)
+				        }
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
