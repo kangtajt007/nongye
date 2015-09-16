@@ -120,10 +120,7 @@
                 </div>
             </div>
             <div id="background-container" class="row sub-container">
-                <span class="profile-picture">
-                    <img class="img-responsive"
-                         alt="首页背景图" src="../css/image/background.jpg"></img>
-                </span>
+                   	<div id="myChart" style="height: 480px;width: 700px;"></div>
             </div>
             <!-- // 逐日资料 -->
             <div id="day-container" class="row sub-container form-inline hidden">
@@ -133,9 +130,9 @@
                     </div>
                     <div class="widget-body">
                         <div class="widget-main">
-                            <div class="row search-div  alert-success">
+                            <div class="row search-div">
                                 <div class="col-sm-5">
-                                    <div class="alert">
+                                    <div class="alert alert-success">
                                         <span class="badge badge-warning badge-left fly-badge">要素选择</span>
                                         <div class="control-group">
                                             <div class="radio">
@@ -246,7 +243,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="alert">
+                                    <div class="alert alert-success">
                                         <span class="badge badge-warning badge-left fly-badge">起止日期</span>
                                         <div class="input-group input-group-sm">
                                             <input class="form-control date-picker" id="startDate" type="text" data-date-format="yyyy-mm-dd"/>
@@ -254,7 +251,7 @@
                                                 <i class="fa fa-calendar bigger-110"></i>
                                             </span>
                                         </div>
-                                        <div class="input-group input-group-sm">
+                                        <div class="input-group input-group-sm" style="margin-top:32px;">
                                             <input class="form-control date-picker" id="endDate" type="text" data-date-format="yyyy-mm-dd"/>
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar bigger-110"></i>
@@ -263,20 +260,20 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="alert">
+                                    <div class="alert alert-success">
                                         <span class="badge badge-warning badge-left fly-badge">条件查询</span>
                                         <div class="input-group input-group-sm">
                                              <span class="input-group-addon">
                                                 <i class="bigger-110"> ≥</i>
-                                            </span><input class="form-control" type="text" value="10" disabled="disabled"/>
+                                            </span><input name="condition-input" class="form-control" type="text" value="10" disabled="disabled"/>
                                         </div>
                                         <div class="input-group input-group-sm">
                                              <span class="input-group-addon">
                                                 <i class="bigger-110"> ≤</i>
-                                            </span>  <input class="form-control " type="text" value="9999" disabled="disabled"/>
+                                            </span> <input name="condition-input" class="form-control " type="text" value="9999" disabled="disabled"/>
                                         </div>
                                           <div class="input-group input-group-sm" style="margin-bottom: -8px; padding-top: 4px;">        <label>
-                                            <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
+                                            <input name="condition-switch" class="ace ace-switch ace-switch-2" type="checkbox">
                                             <span class="lbl"> </span>
                                         </label>
                                           </div>
@@ -726,7 +723,7 @@
                                             </span>  <input class="form-control " type="text" value="9999" disabled="disabled"/>
                                         </div>
                                           <div class="input-group input-group-sm" style="margin-bottom: -8px; padding-top: 4px;">        <label>
-                                            <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
+                                            <input class="ace ace-switch ace-switch-2" type="checkbox">
                                             <span class="lbl"> </span>
                                         </label>
                                           </div>
@@ -986,7 +983,7 @@
                                             </span>  <input class="form-control " type="text" value="9999" disabled="disabled"/>
                                         </div>
                                           <div class="input-group input-group-sm" style="margin-bottom: -8px; padding-top: 4px;">        <label>
-                                            <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
+                                            <input class="ace ace-switch ace-switch-2" type="checkbox">
                                             <span class="lbl"> </span>
                                         </label>
                                           </div>
@@ -1084,8 +1081,111 @@
 
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
+<script src="../js/echarts/echarts.js"></script>
 <script>
+var __es = null;
+//Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+require.config({
+	paths : {
+		echarts : '../js/echarts/'
+	}
+});
+//自定义扩展图表类型：mapType = HK
+//require('echarts/util/mapData/params').params.guangdong= {
+//    getGeoJson: function (callback) {
+//        $.getJSON('../js/echarts/json/guangdong.json',callback);
+ //   }
+//}
+
+//Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+require([ 'echarts',
+ 'echarts/chart/bar',// 柱形图（纵向），堆积柱形图，条形图（横向），堆积条形图
+	'echarts/chart/chord',// 和弦图。常用于展现关系数据，外层为圆环图，可体现数据占比关系，内层为各个扇形间相互连接的弦，可体现关系数据
+	'echarts/chart/eventRiver',// 事件河流图。常用于展示具有时间属性的多个事件，以及事件随时间的演化。
+	'echarts/chart/force',// 力导布局图。常用于展现复杂关系网络聚类布局。
+	'echarts/chart/funnel',// 漏斗图。用于展现数据经过筛选、过滤等流程处理后发生的数据变化，常见于BI类系统。
+	'echarts/chart/gauge',// 仪表盘。用于展现关键指标数据，常见于BI类系统。
+	'echarts/chart/k',// K线图，蜡烛图。常用于展现股票交易数据。
+	'echarts/chart/line', // 折线图，堆积折线图，区域图，堆积区域图。
+	'echarts/chart/map',// 地图。内置世界地图、中国及中国34个省市自治区地图数据、可通过标准GeoJson扩展地图类型。支持svg扩展类地图应用，如室内地图、运动场、物件构造等。
+	'echarts/chart/pie',// 饼图，圆环图。饼图支持两种（半径、面积）南丁格尔玫瑰图模式。
+	'echarts/chart/radar',// 雷达图，填充雷达图。高维度数据展现的常用图表。
+	'echarts/chart/scatter', // 散点图，气泡图。散点图至少需要横纵两个数据，更高维度数据加入时可以映射为颜色或大小，当映射到大小时则为气泡图
+	'echarts/chart/heatmap'
+	], function(ec) {
+	var myChart = ec.init(document.getElementById('myChart')); 
+	var heatData = [];
+	 for (var i = 0; i < 200; ++i) {
+	     heatData.push([
+	         100 + Math.random() * 20,
+	         24 + Math.random() * 16,
+	         Math.random()
+	     ]);
+	 }
+	 for (var j = 0; j < 10; ++j) {
+	     var x = 100 + Math.random() * 16;
+	     var y = 24 + Math.random() * 12;
+	     var cnt = 30 * Math.random();
+	     for (var i = 0; i < cnt; ++i) {
+	         heatData.push([
+	             x + Math.random() * 2,
+	             y + Math.random() * 2,
+	             Math.random()
+	         ]);
+	     }
+	 }
+
+	var option = {
+	     backgroundColor: '#e7e7e7',
+	     title : {
+	         text: '气候统计图',
+	         x:'left',
+	         textStyle: {
+	             color: '#000000'
+	         }
+	     },
+	     tooltip : {
+	         trigger: 'item',
+	         formatter: '{b}'
+	     },
+	     dataRange: {
+	         min: 0,
+	         max: 40,
+	         text:['高','低'],
+	         realtime: false,
+	         calculable : true,
+	         color: ['orangered','yellow','lightskyblue']
+	     },
+	     series : [
+	         {
+	             name: '广东',
+	             type: 'map',
+	             mapType: '广东',
+	             data:[
+	                // {name:'佛山市',value:10}
+	             ],
+	             itemStyle: {
+	                 normal: {
+	                	 label:{show:true},
+	                     borderColor:'rgba(100,149,237,0.6)',
+	                     borderWidth:0.5
+	                 },
+	            	 emphasis:{label:{show:true}}
+	             }
+	         }
+	     ]
+	 };
+     // 为echarts对象加载数据 
+     myChart.setOption(option); 
+});
     $(function () {
+    	 
+    	
+        $("[name='condition-switch']").click(function(){
+            var me = $(this),checked = me.is(":checked"),parent = me.parents(".alert"), conditionInput = parent.find("[name='condition-input']");
+            conditionInput.attr("disabled",!checked);
+        });
+
         //二级菜单切换
         $("button.btn-app").click(function(){
             var me = $(this), target = me.attr("click-target"),dataType=me.attr("data-type");
@@ -1127,11 +1227,12 @@
 			var startDate = moment($('#'+type+'-container #startDate').val()),
 				endDate = moment($('#'+type+'-container #endDate').val()),
 			    days = endDate.diff(startDate) / 86400000,
+			    days1 =days+1,
 			    dayAry = [],
 			    grid_data = [],
 			    colNames = ['站号', '站名'],
 			    colModels = [
-			                     {name: 'siteNo', index: 'siteNo', width: 60},
+			                     {name: 'siteNo', index: 'siteNo', width: 60,editable: true},
 			                     {name: 'siteName', index: 'siteName', width: 90}
 			                 ];
 			
@@ -1145,7 +1246,7 @@
 			 var userData = {};
 			 userData.siteNo = "";
 			 userData.siteName = "平均值";
-			 for (var i = 0; i < days + 1; i++) {
+			 for (var i = 0; i < days1; i++) {
 			     var c = dayAry[i];
 			     userData[c] = "";
 			 }
@@ -1156,14 +1257,14 @@
 			
 			var rowData =[];
 			//设置展示数据
-			for (var j = 0; j < days + 1; j++) {
+			for (var j = 0; j <days1; j++) {
 			    var obj = {};
 			    obj.siteNo = "57988";
 			    obj.siteName = "乐昌";
 			    obj.avg = "-9999";
 			    obj.max = "-9999";
 			    obj.min = "-9999";
-			    for (var i = 0; i < days + 1; i++) {
+			    for (var i = 0; i < days1; i++) {
 			        var c = dayAry[i];
 			        obj[c] = "-9999";
 			    }
@@ -1171,7 +1272,7 @@
 			}
 			
 			//设置展示列
-			for (var i = 0; i < days + 1; i++) {
+			for (var i = 0; i <days1; i++) {
 			    colNames.push(dayAry[i]);
 			}
 			colNames.push('平均值');
@@ -1179,7 +1280,7 @@
 			colNames.push('最大值');
 			
 			//设置展示模型
-			for (var i = 0; i < days + 1; i++) {
+			for (var i = 0; i < days1; i++) {
 			    var c = dayAry[i];
 			    colModels.push({name: c, index: c, width: 70});
 			}
@@ -1193,6 +1294,7 @@
 			    data: grid_data,
 			    datatype: "local",
 			    height: 220,
+				editable: true,
 			    colNames: colNames,
 			    colModel: colModels,
 			    shrinkToFit: colModels.length > 10 ? false : true,
@@ -1203,30 +1305,14 @@
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
-			        data={
-			        	siteName:"平均值",
-			        	avg:days >0? "-9999":"",
-			         	max:days >0? "-9999":"",
-			        	min:days >0? "-9999":""};
-			        if(tr.length <=1 ){
-			        	handerData(tr,gridTable,data,days,dayAry);	
-				        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-				        
-				        data["siteName"] = "最小值";
-				        handerData(rowTr,gridTable,data,days,dayAry);
-				        data["siteName"] = "最大值";
-				        handerData(rowTr1,gridTable,data,days,dayAry);
-				   
-				        tr.after(rowTr);
-				        tr.after(rowTr1);
-			        }else{
-			        	handerData(tr[0],gridTable,data,days,dayAry)
-			        }
+			    	handerFooterTable(dataGrid,gridTable,days1,dayAry);
+			    
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
+  
+    
   	 //初始化时段资料表格
   	function initTimeResourceTable(type){
   		var dataGrid = 'data-grid-'+type,
@@ -1238,6 +1324,7 @@
 			var startDate = moment($('#'+type+'-container #startDate').val()),
 				endDate = moment($('#'+type+'-container #endDate').val()),
 			    days = endDate.diff(startDate) / 86400000,
+			    days1 =days+1,
 			    dayAry = [],
 			    grid_data = [],
 			    colNames = ['站号', '站名','平均值','常年平均值','距平','排名(大-小)','排名(小-大)','排名年份'],
@@ -1258,11 +1345,9 @@
 			    var c = startDate.add(1, 'd');
 			    dayAry.push(c.format("MM-DD"));
 			}
-			//设置自定义数据
-			 var userData = {avgVal : "平均值"};
 			
 			//设置展示数据
-			for (var j = 0; j < days + 1; j++) {
+			for (var j = 0; j < days1; j++) {
 			    var obj = {};
 			    obj.siteNo = "57988";
 			    obj.siteName = "乐昌";
@@ -1290,29 +1375,11 @@
 			    //toppager: true,
 			    rownumbers: true,
 			    footerrow: true,
-			    userData:userData,
+			    userData:{},
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
-				        data={
-				        	siteName:"平均值",
-				        	avg:days >0? "-9999":"",
-				         	max:days >0? "-9999":"",
-				        	min:days >0? "-9999":""};
-				        if(tr.length <=1 ){
-				        	handerData(tr,gridTable,data,days,dayAry);	
-					        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-					        
-					        data["siteName"] = "最小值";
-					        handerData(rowTr,gridTable,data,days,dayAry);
-					        data["siteName"] = "最大值";
-					        handerData(rowTr1,gridTable,data,days,dayAry);
-					   
-					        tr.after(rowTr);
-					        tr.after(rowTr1);
-				        }else{
-				        	handerData(tr[0],gridTable,data,days,dayAry)
-				        }
+			    	var obj = ["avgVal","anomaly","yearAvgVal","rankMaxMin","rankMinMax","rankYear"];
+			    	 handerFooterTable(dataGrid,gridTable,days1,dayAry,obj);
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
@@ -1328,6 +1395,7 @@
 			var startDate = moment($('#'+type+'-container #startDate').val()),
 				endDate = moment($('#'+type+'-container #endDate').val()),
 			    days = endDate.year()-startDate.year(),
+			    days1 =days+1,
 			    dayAry = [],
 			    grid_data = [],
 			    colNames = ['站号', '站名'],
@@ -1346,7 +1414,7 @@
 			 var userData = {};
 			 userData.siteNo = "";
 			 userData.siteName = "平均值";
-			 for (var i = 0; i < days + 1; i++) {
+			 for (var i = 0; i < days1; i++) {
 			     var c = dayAry[i];
 			     userData[c] = "";
 			 }
@@ -1357,14 +1425,14 @@
 			
 			var rowData =[];
 			//设置展示数据
-			for (var j = 0; j < days + 1; j++) {
+			for (var j = 0; j < days1; j++) {
 			    var obj = {};
 			    obj.siteNo = "57988";
 			    obj.siteName = "乐昌";
 			    obj.avg = "-9999";
 			    obj.max = "-9999";
 			    obj.min = "-9999";
-			    for (var i = 0; i < days + 1; i++) {
+			    for (var i = 0; i < days1; i++) {
 			        var c = dayAry[i];
 			        obj[c] = "-9999";
 			    }
@@ -1372,7 +1440,7 @@
 			}
 			
 			//设置展示列
-			for (var i = 0; i < days + 1; i++) {
+			for (var i = 0; i < days1; i++) {
 			    colNames.push(dayAry[i]);
 			}
 			colNames.push('平均值');
@@ -1380,7 +1448,7 @@
 			colNames.push('最大值');
 			
 			//设置展示模型
-			for (var i = 0; i < days + 1; i++) {
+			for (var i = 0; i < days1; i++) {
 			    var c = dayAry[i];
 			    colModels.push({name: c, index: c, width: 70});
 			}
@@ -1404,33 +1472,14 @@
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
-			        data={
-			        	siteName:"平均值",
-			        	avg:days >0? "-9999":"",
-			         	max:days >0? "-9999":"",
-			        	min:days >0? "-9999":""};
-			        if(tr.length <=1 ){
-			        	handerData(tr,gridTable,data,days,dayAry);	
-				        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-				        
-				        data["siteName"] = "最小值";
-				        handerData(rowTr,gridTable,data,days,dayAry);
-				        data["siteName"] = "最大值";
-				        handerData(rowTr1,gridTable,data,days,dayAry);
-				   
-				        tr.after(rowTr);
-				        tr.after(rowTr1);
-			        }else{
-			        	handerData(tr[0],gridTable,data,days,dayAry)
-			        }
+			    	handerFooterTable(dataGrid,gridTable,days1,dayAry);
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
 
 
-    //初始化逐日资料表格
+    //初始化表格
     function initTable(type){
     	if(!type)
     		return;
@@ -1448,12 +1497,41 @@
     		initYearResourceTable(type);
     }
     
+    
+    function handerFooterTable(dataGrid,gridTable,days1,dayAry,obj){
+        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr = $(footerTable.find("tr")[0]),
+        data={
+        	siteName:"平均值",
+        	avg:days1 >0? "-9999":"",
+         	max:days1 >0? "-9999":"",
+        	min:days1 >0? "-9999":""};
+        footerTable.empty();
+        if(obj){
+        	for(var i in obj){
+        		data[obj[i]] = days1 >0? "-9999":""
+        	}
+        }
+       	data["siteName"] = "平均值";
+    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
+    	data["siteName"] = "最小值";
+    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
+    	data["siteName"] = "最大值";
+    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
+    }
+    function handerRowTr(tr,footerTable,gridTable,data,days,dayAry){
+    	var rowTr =tr.clone(true,true);
+        handerData(rowTr,gridTable,data,days,dayAry);
+		footerTable.append(rowTr);
+    }
+    
     function handerData(tr,gridTable,data,days,dayAry){
+  	  $('[aria-describedby="'+gridTable+'_rn"]', tr).width("6px");
     	for(var i in data){
             $('[aria-describedby="'+gridTable+'_'+i+'"]', tr).html(data[i]);	
     	}
+
     	if(days >0){
-    	    for (var i = 0; i < days + 1; i++) {
+    	    for (var i = 0; i < days; i++) {
     	           $('[aria-describedby="'+gridTable+'_'+dayAry[i]+'"]', tr).html("-9999");;
     	        }
     	}
