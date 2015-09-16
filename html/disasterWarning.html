@@ -346,6 +346,26 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="alert">
+                                        <span class="badge badge-warning badge-left fly-badge">统计功能选择</span>
+                                			<div class="radio">
+                                                <label>
+                                                    <input name="form-statistics-radio-time" type="radio" class="ace" checked="checked">
+                                                    <span class="lbl">灾害过程概况</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="form-statistics-radio-time" type="radio" class="ace">
+                                                    <span class="lbl">过程起止日期</span>
+                                                </label>
+                                            </div>
+
+                                            
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="alert">
                                         <span class="badge badge-warning badge-left fly-badge">起止日期</span>
                                         <div class="input-group input-group-sm">
                                             <input class="form-control date-picker" id="startDate" type="text" data-date-format="yyyy-mm-dd"/>
@@ -361,98 +381,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                  <div class="col-sm-1">
+                                  
+                               <div class="col-sm-1">
                                     <div class="alert">
-                                        <span class="badge badge-warning badge-left fly-badge">统计量</span>
-                                			<div class="radio">
-                                                <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace" checked="checked">
-                                                    <span class="lbl">平均值</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace">
-                                                    <span class="lbl">最大值</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace">
-                                                    <span class="lbl">最小值</span>
-                                                </label>
-                                            </div>
-                                              <div class="radio">
-                                                <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace" disabled="disabled">
-                                                    <span class="lbl">累计值</span>
-                                                </label>
-                                            </div>
+                                        <span class="badge badge-warning badge-left fly-badge">预警等级</span>
+                                        	0-正常  1-轻等 2-中等 3-重等 4-严重
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
-                                    <div class="alert">
-                                        <span class="badge badge-warning badge-left fly-badge">条件查询</span>
-                                        <div class="input-group input-group-sm">
-                                             <span class="input-group-addon">
-                                                <i class="bigger-110">≥</i>
-                                            </span><input class="form-control" type="text" value="10" disabled="disabled"/>
-                                        </div>
-                                        <div class="input-group input-group-sm">
-                                             <span class="input-group-addon">
-                                                <i class="bigger-110"> ≤</i>
-                                            </span>  <input class="form-control " type="text" value="9999" disabled="disabled"/>
-                                        </div>
-                                          <div class="input-group input-group-sm" style="margin-bottom: -8px; padding-top: 4px;">        <label>
-                                            <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
-                                            <span class="lbl"> </span>
-                                        </label>
-                                          </div>
-                                    </div>
-                                </div>
-                                  <div class="col-sm-1">
-                                    <div class="alert">
-                                        <span class="badge badge-warning badge-left fly-badge">同期值</span>
-                                         <div class="radio">
-                                                <label>
-                                                    <input name="form-same-radio-time" type="radio" class="ace">
-                                                    <span class="lbl">常年</span>
-                                                </label>
-                                            </div>
-                                              <div class="radio">
-                                                <label>
-                                                    <input name="form-same-radio-time" type="radio" class="ace" disabled="disabled">
-                                                    <span class="lbl">某年</span>
-                                                </label>
-                                            </div>
-                                             <div class="input-group input-group-sm">
-                                            <input class="form-control date-picker"  type="text" data-date-format="yyyy" disabled="disabled" value="2014"/>
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar bigger-110"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                   <div class="col-sm-1">
-                                    <div class="alert">
-                                        <span class="badge badge-warning badge-left fly-badge">排名年份</span>
-                                        <div class="input-group input-group-sm">
-                                        	<input class="form-control" type="text" value="1951" disabled="disabled"/>
-                                        	  <span class="input-group-addon">
-                                                <i class="fa fa-calendar bigger-110"></i>
-                                            </span>
-                                        </div>
-                                        <div class="input-group input-group-sm">
-                                        	 <input class="form-control " type="text" value="2015" disabled="disabled"/>
-                                        	   <span class="input-group-addon">
-                                                <i class="fa fa-calendar bigger-110"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 function-div">
+                                <div class="col-sm-3 function-div">
                                     <div>
                                         <label>
                                             <input name="switch-field-1" class="ace ace-switch ace-switch-2" type="checkbox">
@@ -662,7 +598,7 @@
 			    colNames = ['站号', '站名'],
 			    colModels = [
 			                     {name: 'siteNo', index: 'siteNo', width: 60},
-			                     {name: 'siteName', index: 'siteName', width: 90}
+			                     {name: 'siteName', index: 'siteName'}
 			                 ];
 			console.info(select);
 			
@@ -745,30 +681,31 @@
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
+			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr = $(footerTable.find("tr")[0]),
 			        data={
 			        	siteName:"平均值",
 			        	avg:days >0? "-9999":"",
 			         	max:days >0? "-9999":"",
 			        	min:days >0? "-9999":""};
-			        if(tr.length <=1 ){
-			        	handerData(tr,gridTable,data,days,dayAry);	
-				        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-				        
-				        data["siteName"] = "最小值";
-				        handerData(rowTr,gridTable,data,days,dayAry);
-				        data["siteName"] = "最大值";
-				        handerData(rowTr1,gridTable,data,days,dayAry);
-				   
-				        tr.after(rowTr);
-				        tr.after(rowTr1);
-			        }else{
-			        	handerData(tr[0],gridTable,data,days,dayAry)
-			        }
+			        footerTable.empty();
+			      
+			        for (var k = 0; k < select.length; k++) {
+			        	  if(select.length > 1){
+						    	data.target = select[k];	
+						    }
+			        	data["siteName"] = "平均值";
+			        	handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+			        	data["siteName"] = "最小值";
+			        	handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+			        	data["siteName"] = "最大值";
+			        	handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+		        		
+		        	}
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
+
   	 //初始化时段资料表格
   	function initTimeResourceTable(type){
   		var dataGrid = 'data-grid-'+type,
@@ -782,7 +719,7 @@
 			    days = endDate.diff(startDate) / 86400000,
 			    dayAry = [],
 			    grid_data = [],
-			    colNames = ['站号', '站名','平均值','常年平均值','距平','排名(大-小)','排名(小-大)','排名年份'],
+			    colNames = ['站号', '站名','轻等日数','中等日数','重等日数','严重日数','总日数','最高灾害等级'],
 			    colModels = [
 			                     {name: 'siteNo', index: 'siteNo', width: 60},
 			                     {name: 'siteName', index: 'siteName', width: 90},
@@ -801,19 +738,19 @@
 			    dayAry.push(c.format("MM-DD"));
 			}
 			//设置自定义数据
-			 var userData = {avgVal : "平均值"};
+			 var userData = {};
 			
 			//设置展示数据
 			for (var j = 0; j < days + 1; j++) {
 			    var obj = {};
 			    obj.siteNo = "57988";
 			    obj.siteName = "乐昌";
-			    obj.avgVal = "-9999";
-			    obj.anomaly = "-9999";
-			    obj.yearAvgVal = "-9999";
-			    obj.rankMaxMin = "-9999";
-			    obj.rankMinMax = "-9999";
-			    obj.rankYear = "-9999";
+			    obj.avgVal = "0";
+			    obj.anomaly = "0";
+			    obj.yearAvgVal = "0";
+			    obj.rankMaxMin = "0";
+			    obj.rankMinMax = "0";
+			    obj.rankYear = "0";
 			    grid_data.push(obj)
 			}
 			
@@ -835,142 +772,29 @@
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
+			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr = $(footerTable.find("tr")[0]),
 				        data={
 				        	siteName:"平均值",
-				        	avg:days >0? "-9999":"",
-				         	max:days >0? "-9999":"",
-				        	min:days >0? "-9999":""};
-				        if(tr.length <=1 ){
-				        	handerData(tr,gridTable,data,days,dayAry);	
-					        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-					        
-					        data["siteName"] = "最小值";
-					        handerData(rowTr,gridTable,data,days,dayAry);
-					        data["siteName"] = "最大值";
-					        handerData(rowTr1,gridTable,data,days,dayAry);
-					   
-					        tr.after(rowTr);
-					        tr.after(rowTr1);
-				        }else{
-				        	handerData(tr[0],gridTable,data,days,dayAry)
-				        }
+				        	avgVal:days >0? "0":"",
+				        	anomaly:days >0? "0":"",
+				        	yearAvgVal:days >0? "0":"",
+				        			rankMaxMin:days >0? "0":"",
+				        					rankMinMax:days >0? "0":"",
+				        							rankYear:days >0? "0":""};
+		    			 footerTable.empty();
+		    			data["siteName"] = "灾害站平均值";
+		    			handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+		    			data["siteName"] = "灾害站最小值";
+		    			handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+		    			data["siteName"] = "灾害站最大值";
+		    			handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
+		    			data["siteName"] = "所有站平均值";
+		    			handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
-	 //初始化年资料表格
-  	function initYearResourceTable(type){
-  		var dataGrid = 'data-grid-'+type,
-		gridTable ='grid-table-'+type;
-			$('#'+dataGrid).append('<table id="'+gridTable+'" style="height:1px;"></table>');
-			var grid_selector = "#"+gridTable;
-			
-			
-			var startDate = moment($('#'+type+'-container #startDate').val()),
-				endDate = moment($('#'+type+'-container #endDate').val()),
-			    days = endDate.year()-startDate.year(),
-			    dayAry = [],
-			    grid_data = [],
-			    colNames = ['站号', '站名'],
-			    colModels = [
-			                     {name: 'siteNo', index: 'siteNo', width: 60},
-			                     {name: 'siteName', index: 'siteName', width: 90}
-			                 ];
-			
-			 //获取时间数组   
-			dayAry.push(startDate.format("YYYY"));
-			for (var i = 0; i < days; i++) {
-			    var c = startDate.add(1, 'y');
-			    dayAry.push(c.format("YYYY"));
-			}
-			//设置自定义数据
-			 var userData = {};
-			 userData.siteNo = "";
-			 userData.siteName = "平均值";
-			 for (var i = 0; i < days + 1; i++) {
-			     var c = dayAry[i];
-			     userData[c] = "";
-			 }
-			 userData.avg = "";
-			 userData.max = "";
-			 userData.min = ""; 
-			   
-			
-			var rowData =[];
-			//设置展示数据
-			for (var j = 0; j < days + 1; j++) {
-			    var obj = {};
-			    obj.siteNo = "57988";
-			    obj.siteName = "乐昌";
-			    obj.avg = "-9999";
-			    obj.max = "-9999";
-			    obj.min = "-9999";
-			    for (var i = 0; i < days + 1; i++) {
-			        var c = dayAry[i];
-			        obj[c] = "-9999";
-			    }
-			    grid_data.push(obj)
-			}
-			
-			//设置展示列
-			for (var i = 0; i < days + 1; i++) {
-			    colNames.push(dayAry[i]);
-			}
-			colNames.push('平均值');
-			colNames.push('最小值');
-			colNames.push('最大值');
-			
-			//设置展示模型
-			for (var i = 0; i < days + 1; i++) {
-			    var c = dayAry[i];
-			    colModels.push({name: c, index: c, width: 70});
-			}
-			colModels.push({name: 'avg', index: 'avg', width: 50});
-			colModels.push({name: 'max', index: 'max', width: 50});
-			colModels.push({name: 'min', index: 'max', width: 50});
-			
-			//数据
-			$(grid_selector).html();
-			jQuery(grid_selector).jqGrid({
-			    data: grid_data,
-			    datatype: "local",
-			    height: 220,
-			    colNames: colNames,
-			    colModel: colModels,
-			    shrinkToFit: colModels.length > 10 ? false : true,
-			    altRows: true,
-			    //toppager: true,
-			    rownumbers: true,
-			    footerrow: true,
-			    userData:userData,
-			    userDataOnFooter: true, 
-			    gridComplete: function () {
-			        var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr =footerTable.find("tr"),
-			        data={
-			        	siteName:"平均值",
-			        	avg:days >0? "-9999":"",
-			         	max:days >0? "-9999":"",
-			        	min:days >0? "-9999":""};
-			        if(tr.length <=1 ){
-			        	handerData(tr,gridTable,data,days,dayAry);	
-				        var rowTr =tr.clone(true,true),rowTr1=tr.clone(true,true);
-				        
-				        data["siteName"] = "最小值";
-				        handerData(rowTr,gridTable,data,days,dayAry);
-				        data["siteName"] = "最大值";
-				        handerData(rowTr1,gridTable,data,days,dayAry);
-				   
-				        tr.after(rowTr);
-				        tr.after(rowTr1);
-			        }else{
-			        	handerData(tr[0],gridTable,data,days,dayAry)
-			        }
-			    }
-			});
-			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-    }
-
+	
 
     //初始化逐日资料表格
     function initTable(type){
@@ -990,7 +814,14 @@
     		initYearResourceTable(type);
     }
     
+    function handerRowTr(tr,footerTable,gridTable,data,days,dayAry){
+    	var rowTr =tr.clone(true,true);
+        handerData(rowTr,gridTable,data,days,dayAry);
+		footerTable.append(rowTr);
+    }
+    
     function handerData(tr,gridTable,data,days,dayAry){
+  	 	 $('[aria-describedby="'+gridTable+'_rn"]', tr).width("6px");
     	for(var i in data){
             $('[aria-describedby="'+gridTable+'_'+i+'"]', tr).html(data[i]);	
     	}
