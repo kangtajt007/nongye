@@ -44,3 +44,6 @@ div.modal-footer{
 .pointer{
     cursor: pointer;
 }
+.widget-main .label{
+    margin:8px 0;
+}
