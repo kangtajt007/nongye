@@ -47,3 +47,9 @@ div.modal-footer{
 .widget-main .label{
     margin:8px 0;
 }
+.search-table th{
+    text-align: right;
+}
+.search-table td{
+    padding-left: 10px;
+}

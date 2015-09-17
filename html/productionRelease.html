@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="../css/bootstrap.css"/>
     <link rel="stylesheet" href="../css/font-awesome.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../css/chosen.css"/>
     <!-- page specific plugin styles -->
     <!-- text fonts -->
     <link rel="stylesheet" href="../css/ace-fonts.css"/>
+    <link rel="stylesheet" href="../css/ui.jqgrid.css"/>
     <!-- ace styles -->
     <link rel="stylesheet" href="../css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
     <!--[if lte IE 9]>
@@ -74,7 +76,92 @@
     <!-- /section:basics/sidebar -->
     <div class="main-content">
         <div class="page-content">
-
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <button class="btn btn-app btn-success btn-xs active" click-target="#advices-container">
+                            <i class="ace-icon fa fa-list-alt bigger-160"></i>
+                            情报预报
+                        </button>
+                        <button class="btn btn-app btn-purple btn-xs" click-target="#agricultural-container">
+                            <i class="ace-icon fa fa-newspaper-o bigger-160"></i>
+                            农用预报
+                        </button>
+                        <button class="btn btn-app btn-pink btn-xs" click-target="#critical-container">
+                            <i class="ace-icon fa fa-vimeo-square bigger-160"></i>
+                            关键期
+                        </button>
+                        <button class="btn btn-app btn-danger btn-xs" click-target="#disaster-container">
+                            <i class="ace-icon fa fa-bolt bigger-160"></i>
+                            灾害专题
+                        </button>
+                        <button class="btn btn-app btn-info btn-xs" click-target="#station-container">
+                            <i class="ace-icon fa fa-bank bigger-160"></i>
+                            台站农情
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="advices-container" class="row sub-container form-inline">
+                <div class="widget-box widget-color-blue3">
+                    <div class="widget-header">
+                        <div class="widget-title">农业气象情报预报</div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <table class="search-table">
+                                <tr>
+                                    <th width="100">签发单位:</th>
+                                    <td width="200">
+                                        <select name="issue-select" class="chosen-select">
+                                            <option value="1">广东省气候中心</option>
+                                            <option value="2">广州市气候与农业气象中心</option>
+                                            <option value="2">国家气候中心</option>
+                                        </select>
+                                    </td>
+                                    <th width="100">签发日期:</th>
+                                    <td>
+                                        <div class="input-group">
+                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-mm-dd">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <th width="100">制作:</th>
+                                    <td>
+                                        <select name="maker-select" class="chosen-select">
+                                            <option value="1">广东省气候中心</option>
+                                            <option value="2">广州市气候与农业气象中心</option>
+                                            <option value="2">国家气候中心</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>内容:</th>
+                                    <td colspan="4"><input type="text" style="width: 500px;" placeholder="内容" /></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-corner btn-success fa fa-search">查询</button>
+                                        <button class="btn btn-sm btn-corner btn-info fa fa-plus">添加</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="row" style="margin-top:10px;">
+                                <table id="advicesTable"></table>
+                                <div id="jqGridPager"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="agricultural-container" class="row sub-container">
+            </div>
+            <div id="critical-container" class="row sub-container">
+            </div>
+            <div id="disaster-container" class="row sub-container">
+            </div>
+            <div id="station-container" class="row sub-container">
+            </div>
         </div>
     </div>
 </div>
@@ -95,7 +182,6 @@
 </script>
 <script src="../js/bootstrap.js"></script>
 <!-- page specific plugin scripts -->
-
 <!-- ace scripts -->
 <script src="../js/ace/elements.scroller.js"></script>
 <script src="../js/ace/elements.colorpicker.js"></script>
@@ -118,5 +204,84 @@
 <script src="../js/ace/ace.settings-skin.js"></script>
 <script src="../js/ace/ace.widget-on-reload.js"></script>
 <script src="../js/ace/ace.searchbox-autocomplete.js"></script>
+
+<script src="../js/bootstrap-datepicker.js"></script>
+<script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
+<script src="../js/jqGrid/i18n/grid.locale-cn.js"></script>
+<script src="../js/chosen.jquery.js"></script>
+<script src="../js/bootbox.js"></script>
+<script>
+    $(function () {
+        $(".date-picker").datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('.chosen-select').chosen();
+
+        $(".tooltip-success").tooltip();
+
+        $("button.btn-app").click(function(){
+            var me = $(this), target = me.attr("click-target");
+            $("div.sub-container").hide();
+            $(target).removeClass("hidden").show();
+            initAdvicesTable();
+        });
+    });
+
+    //初始化情报预报表格
+    function initAdvicesTable(){
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width());
+        });
+        var url = "../json/advices.json";
+
+        $("#advicesTable").jqGrid(
+        {
+            url:url,
+            mtype:'GET',
+            datatype:'json',
+            width: 850,
+            columnsresize: true,
+            rownumbers: true,
+            colModel: [
+                { label: '文件名', name: 'name', width: 250,sortable:false,formatter:formatName},
+                { label: '摘要', name: 'memo', width: 350,sortable:false ,formatter:formatMemo},
+                { label: '发布日期', name: 'publishDate', width: 150,sortable:false },
+                { label: '制作', name: 'maker', width: 120,sortable:false },
+                { label: '签发', name: 'issue', width: 120,sortable:false },
+                { label: '签发单位', name: 'issueUnit', width: 200,sortable:false },
+                { label: '操作', name: 'id', width: 300,formatter: formatTools,sortable:false}
+            ],
+            altRows: true,
+            pager: "#jqGridPager"
+        });
+
+        function formatName(cellValue, options, rowObject){
+            var link = $('<a href="#" class="blue"></a>');
+            link.html(cellValue.length > 18?cellValue.substring(0,18)+"...":cellValue);
+            return link[0].outerHTML;
+        }
+
+        function formatMemo(cellValue, options, rowObject){
+            if(cellValue.length > 20){
+                return cellValue.substring(0,20) + "...";
+            }
+            else{
+                return cellValue;
+            }
+        }
+
+        function formatTools(cellValue, options, rowObject){
+            var html = '<div class="btn-group btn-corner"><button class="btn btn-sm btn-corner btn-success fa fa-edit">编辑</button>'
+                       +'<button class="btn btn-sm btn-corner btn-info fa fa-signal">签发</button>'
+                       +'<button class="btn btn-sm btn-corner btn-danger fa fa-remove">删除</button></div>';
+            return html;
+        }
+
+        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+    }
+</script>
 </body>
 </html>
