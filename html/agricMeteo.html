@@ -28,7 +28,7 @@
     <![endif]-->
 </head>
 
-<body class="no-skin">
+<body class="no-skin" style="overflow: hidden;">
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
     <script type="text/javascript">
@@ -91,7 +91,7 @@
                             <i class="ace-icon fa fa-share bigger-160"></i>
                             特色农业
                         </button>
-                        <button class="btn btn-app btn-info btn-xs" click-target="#background-container">
+                        <button class="btn btn-app btn-info btn-xs" click-target="#knowledge-base">
                             <i class="ace-icon fa fa-book bigger-160"></i>
                             知识库
                         </button>
@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">实时查询起至日期</span>
+                                        <span class="badge badge-warning badge-left fly-badge">实时查询起止日期</span>
                                         <div class="input-group input-group-sm">
                                             <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
                                 <span class="input-group-addon">
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">历史查询起至年份</span>
+                                        <span class="badge badge-warning badge-left fly-badge">历史查询起止年份</span>
                                         <div class="input-group input-group-sm">
                                             <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
                                 <span class="input-group-addon">
@@ -252,107 +252,139 @@
                     <div class="widget-body">
                         <div class="widget-main">
                             <div class="row search-div">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
+                                    <div class="alert alert-success" style="height:89px;">
+                                        <span class="badge badge-warning badge-left fly-badge">参数设置</span>
+                                        <div class="input-group" style="margin-top: 15px;">
+                                            <input readonly="" type="text" class="form-control" value="">
+                                            <span class="input-group-addon pointer tooltip-success"
+                                                  data-placement="bottom" title="打开参数设置界面" id="params-setting">
+                                                <i class="ace-icon fa fa-asterisk"></i>
+                                            </span>
+                                        </div>
+                                        <div id="params-setting-div" class="hidden">
+                                            <div class="well">
+                                                <div class="radio-inline">
+                                                    <label>
+                                                        <input name="display-type-radio" type="radio" class="ace" checked="checked">
+                                                        <span class="lbl">方案一</span>
+                                                    </label>
+                                                </div>
+                                                <div class="radio-inline">
+                                                    <label>
+                                                        <input name="display-type-radio" type="radio" class="ace" checked="checked">
+                                                        <span class="lbl">方案二</span>
+                                                    </label>
+                                                </div>
+                                                <div class="radio-inline">
+                                                    <label>
+                                                        <input name="display-type-radio" type="radio" class="ace" checked="checked">
+                                                        <span class="lbl">方案三</span>
+                                                    </label>
+                                                </div>
+                                                <span>
+                                                    作物名称:
+                                                    <input type="text"/>
+                                                </span>
+                                            </div>
+                                            <table class="table table-bordered">
+                                                <tr class="align-center">
+                                                    <th width="60"></th>
+                                                    <th class="align-center">下限值</th>
+                                                    <th class="align-center">最适值</th>
+                                                    <th class="align-center">上限值</th>
+                                                    <th class="align-center">权重</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>旬光照</th>
+                                                    <td><input type="text" class="col-xs-9" value="80"/> </td>
+                                                    <td><input type="text" class="col-xs-9" value="50"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="70"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="0.50"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>旬积温</th>
+                                                    <td><input type="text" class="col-xs-9" value="200"/> </td>
+                                                    <td><input type="text" class="col-xs-9" value="290"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="400"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="0.00"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>旬雨量</th>
+                                                    <td><input type="text" class="col-xs-9" value="30"/> </td>
+                                                    <td><input type="text" class="col-xs-9" value="100"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="250"/></td>
+                                                    <td><input type="text" class="col-xs-9" value="0.50"/></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="table">
+                                                <tr class="align-center">
+                                                    <th></th>
+                                                    <th>不适宜</th>
+                                                    <th>次适宜</th>
+                                                    <th>适宜</th>
+                                                    <th>非常适宜</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="col-xs-9 pull-right" value="0.00"/> </td>
+                                                    <td><input type="text" class="col-xs-9 pull-right" value="0.30"/> </td>
+                                                    <td><input type="text" class="col-xs-9 pull-right" value="0.50"/></td>
+                                                    <td><input type="text" class="col-xs-9 pull-right" value="0.80"/></td>
+                                                    <td><input type="text" class="col-xs-9 pull-right" value="1.00"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
                                     <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">查询对象选择</span>
-                                        <div class="control-group">
+                                        <span class="badge badge-warning badge-left fly-badge">起止日期</span>
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+                                        </div>
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="alert alert-success" style="height:89px;">
+                                        <span class="badge badge-warning badge-left fly-badge">结果显示方式</span>
+                                        <div class="input-group input-group-sm" style="margin:15px;">
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">早稻</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">晚稻</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">花生</span>
+                                                    <input name="display-type-radio" type="radio" class="ace" checked="checked">
+                                                    <span class="lbl">等级</span>
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="control-group">
+                                        <div class="input-group input-group-sm">
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">甘薯</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">新植蔗</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-field-radio" type="radio" class="ace">
-                                                    <span class="lbl">自然物候</span>
+                                                    <input name="display-type-radio" type="radio" class="ace">
+                                                    <span class="lbl">数值</span>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">统计功能选择</span>
-                                        <div class="control-group">
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="statis-function-choice" type="radio" class="ace">
-                                                    <span class="lbl">实时资料查询</span>
-                                                </label>
-                                            </div>
+                                    <div class="alert alert-success" style="height:89px;">
+                                        <span class="badge badge-warning badge-left fly-badge">适宜度等级</span>
+                                        <div style="margin: 8px 0 5px 0px;">
+                                            <span class="badge badge-danger">不适宜</span>
+                                            <span class="badge badge-warning">次适宜</span>
                                         </div>
-                                        <div class="control-group">
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="statis-function-choice" type="radio" class="ace">
-                                                    <span class="lbl">历史资料查询</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">实时查询起至日期</span>
-                                        <div class="input-group input-group-sm">
-                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
-                                        </div>
-                                        <div class="input-group input-group-sm">
-                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="alert alert-success">
-                                        <span class="badge badge-warning badge-left fly-badge">历史查询起至年份</span>
-                                        <div class="input-group input-group-sm">
-                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
-                                        </div>
-                                        <div class="input-group input-group-sm">
-                                            <input class="form-control date-picker" type="text" data-date-format="yyyy-MM-dd"/>
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar bigger-110"></i>
-                                </span>
+                                        <div>
+                                            <span class="badge badge-info">适宜</span>
+                                            <span class="badge badge-success">非常适宜</span>
                                         </div>
                                     </div>
                                 </div>
@@ -379,6 +411,57 @@
                             </div>
                             <div class="row">
                                 <table id="feature-table"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="knowledge-base" class="row sub-container form-inline hidden">
+                <div class="row">
+                    <div class="col-xs-9"></div>
+                    <div class="col-xs-3">
+                        <div class="widget-box">
+                            <div class="widget-header widget-header-flat">
+                                <h4 class="widget-title">知识分类</h4>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#" class="bigger-110">农业气象灾害指标</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="bigger-110">农业气象灾害防御措施</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="bigger-110">农业气象科普知识</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="bigger-110">作物与气象</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="bigger-110">标准规范</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <div class="widget-header widget-header-flat">
+                                <h4 class="widget-title">文章列表</h4>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">农业气象灾害指标</a></li>
+                                        <li><a href="#">农业气象灾害防御措施</a></li>
+                                        <li><a href="#">农业气象科普知识</a></li>
+                                        <li><a href="#">作物与气象</a></li>
+                                        <li><a href="#">标准规范</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -430,6 +513,7 @@
 <script src="../js/bootstrap-datepicker.js"></script>
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
+<script src="../js/bootbox.js"></script>
 <script>
     $(function () {
         $(".date-picker").datepicker({
@@ -437,11 +521,33 @@
             todayHighlight: true
         });
 
+        $(".tooltip-success").tooltip();
+
+        $("#params-setting").click(function(){
+            bootbox.dialog({
+                title:'参数设置',
+                message:$("#params-setting-div").html(),
+                locale:'zh_CN',
+                buttons:{
+                    cancel:{
+                        label:"取消",
+                        callback:function(){}
+                    },
+                    ok:{
+                        label:"确认",
+                        callback:function(){
+                        }
+                    }
+                }
+            });
+        });
+
         $("button.btn-app").click(function(){
             var me = $(this), target = me.attr("click-target");
             $("div.sub-container").hide();
             $(target).removeClass("hidden").show();
             initGrowthTable();
+            initFeatureTable();
         });
     });
 
@@ -475,7 +581,54 @@
         colModels.push({name: 'growthSituation', index: 'growthSituation', width: 70});
         colModels.push({name: 'observeDate', index: 'observeDate', width: 100});
 
-        jQuery("#growth-table").jqGrid({
+        $("#growth-table").jqGrid({
+            data: grid_data,
+            datatype: "local",
+            height: 250,
+            colNames: colNames,
+            colModel: colModels,
+            shrinkToFit: colModels.length > 10 ? false : true,
+            altRows: true,
+            rownumbers: true,
+            loadComplete: function () {
+                var table = this;
+            }
+        });
+        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+    }
+
+    //初始化特色农业表格
+    function initFeatureTable(){
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            var t = $("#feature-table");
+            t.jqGrid('setGridWidth', t.parents(".widget-body").width());
+        })
+
+        var grid_data = [],
+                colNames = ["站号","站名","日照适宜度","气温适宜度","降水适宜度","综合适宜度"],
+                colModels = [];
+
+        for(var i=0;i<10;i++){
+            var obj = {
+                siteNo:57989+i,
+                siteName:"仁化",
+                growthDate:'-9999',
+                distanceAvg:'-9999',
+                growthSituation:'-9999',
+                observeDate:'2015年9月14日'
+            };
+            grid_data.push(obj);
+        }
+
+        colModels.push({name: 'siteNo', index: 'siteNo', width: 70});
+        colModels.push({name: 'siteName', index: 'siteName', width: 80});
+        colModels.push({name: 'growthDate', index: 'growthDate', width: 70});
+        colModels.push({name: 'distanceAvg', index: 'distanceAvg', width: 70});
+        colModels.push({name: 'growthSituation', index: 'growthSituation', width: 70});
+        colModels.push({name: 'observeDate', index: 'observeDate', width: 100});
+
+        $("#feature-table").jqGrid({
             data: grid_data,
             datatype: "local",
             height: 250,

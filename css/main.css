@@ -32,3 +32,15 @@
 .ui-jqgrid-ftable{
 	    border: 1px solid grey;
 }
+div.modal-header{
+    padding:8px;
+    border:1px solid #CCC;
+    background: #EAEAEA;
+}
+div.modal-footer{
+    background: #EAEAEA;
+    border: 1px solid #CCC;
+}
+.pointer{
+    cursor: pointer;
+}
