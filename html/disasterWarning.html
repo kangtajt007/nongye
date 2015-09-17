@@ -272,36 +272,36 @@
                                 <div class="col-sm-4">
                                     <div class="alert ">
                                         <span class="badge badge-warning badge-left fly-badge">要素选择</span>
-                                         <div class="control-group">
+                                     <div class="control-group">
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace" checked="checked">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" checked="checked" value="1">
                                                     <span class="lbl">干旱</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="2">
                                                     <span class="lbl">风灾</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="3">
                                                     <span class="lbl">洪涝</span>
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="4">
                                                     <span class="lbl">龙舟水</span>
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="5">
                                                     <span class="lbl">高温</span>
                                                 </label>
                                             </div>
@@ -309,35 +309,35 @@
                                         <div class="control-group">
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="6">
                                                     <span class="lbl">寒露风</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="7">
                                                     <span class="lbl">霜降风</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="8">
                                                     <span class="lbl">冬季寒害</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="9">
                                                     <span class="lbl">低温阴雨</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-field-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-radio-time" type="radio" class="ace" value="10">
                                                     <span class="lbl">倒春寒</span>
                                                 </label>
                                             </div>
@@ -349,14 +349,14 @@
                                         <span class="badge badge-warning badge-left fly-badge">统计功能选择</span>
                                 			<div class="radio">
                                                 <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace" checked="checked">
+                                                    <input name="form-field-select-time" value="1" type="radio" class="ace" checked="checked">
                                                     <span class="lbl">灾害过程概况</span>
                                                 </label>
                                             </div>
 
                                             <div class="radio">
                                                 <label>
-                                                    <input name="form-statistics-radio-time" type="radio" class="ace">
+                                                    <input name="form-field-select-time"  value="2"  type="radio" class="ace">
                                                     <span class="lbl">过程起止日期</span>
                                                 </label>
                                             </div>
@@ -600,7 +600,6 @@
 			                     {name: 'siteNo', index: 'siteNo', width: 60},
 			                     {name: 'siteName', index: 'siteName'}
 			                 ];
-			console.info(select);
 			
 			 //获取时间数组   
 			dayAry.push(startDate.format("MM-DD"));
@@ -719,18 +718,65 @@
 			    days = endDate.diff(startDate) / 86400000,
 			    dayAry = [],
 			    grid_data = [],
-			    colNames = ['站号', '站名','轻等日数','中等日数','重等日数','严重日数','总日数','最高灾害等级'],
+			    colNames = ['站号', '站名'],
 			    colModels = [
 			                     {name: 'siteNo', index: 'siteNo', width: 60},
-			                     {name: 'siteName', index: 'siteName', width: 90},
-			                     {name: 'avgVal', index: 'avgVal', width: 70},
-			                     {name: 'yearAvgVal', index: 'yearAvgVal', width: 70},
-			                     {name: 'anomaly', index: 'anomaly', width: 70},
-			                     {name: 'rankMaxMin', index: 'rankMaxMin', width: 70},
-			                     {name: 'rankMinMax', index: 'rankMinMax', width: 70},
-			                     {name: 'rankYear', index: 'rankMinMax', width: 70}
+			                     {name: 'siteName', index: 'siteName', width: 90}
 			                 ];
 			
+			var val= $('[name="form-field-radio-time"]:checked').val(),select = $('[name="form-field-select-time"]:checked').val();
+			var a = [],b=[];
+			if(select == "1"){
+			
+        	switch (val) {
+	        	case "1"://干旱
+	        	
+	        		a = ['轻等日数','中等日数','重等日数','总日数','最高灾害等级'];
+	        		for (var i = 0; i < a.length; i++) {
+	        			var o = {name: 'count'+i, index: 'count'+i, width: 70}
+	        			b.push(o);
+	        		}
+	        		break;
+	          	case "2"://风灾
+	        		a = ['轻等日数','中等日数','重等日数','严重日数','总日数','最高灾害等级'];
+	        		for (var i = 0; i < a.length; i++) {
+	        			var o = {name: 'count'+i, index: 'count'+i, width: 70}
+	        			b.push(o);
+	        		}
+	        		break;
+	          	case "3"://洪涝
+	          	case "4"://龙舟
+	        		a = ['过程雨量','过程日数','轻等日数','中等日数','重等日数','总日数','最高灾害等级'];
+	        		for (var i = 0; i < a.length; i++) {
+	        			var o = {name: 'count'+i, index: 'count'+i, width: 70}
+	        			b.push(o);
+	        		}
+	        		break;
+	          	case "5"://高温
+	          	case "6"://寒露风
+	          	case "7"://霜降风
+	          	case "8"://冬季寒害
+	          	case "9"://低温阴雨
+	          	case "10"://倒春寒
+	          		a = ['过程日数','轻等日数','中等日数','重等日数','总日数','最高灾害等级'];
+	        		for (var i = 0; i < a.length; i++) {
+	        			var o = {name: 'count'+i, index: 'count'+i, width: 70}
+	        			b.push(o);
+	        		}
+	        		break;
+	        		break;
+	        	}
+		       	$.merge(colNames,a);
+				$.merge(colModels,b);
+			}else{
+				a = ["开始时间","结束时间","灾害等级"];
+				b = [{name: 'startDate', index: 'startDate', width: 70},
+				     {name: 'endDate', index: 'endDate'+i, width: 70},
+				     {name: 'level', index: 'level', width: 70}];
+			  	$.merge(colNames,a);
+				$.merge(colModels,b);
+			}
+		
 			 //获取时间数组   
 			dayAry.push(startDate.format("MM-DD"));
 			for (var i = 0; i < days; i++) {
@@ -741,19 +787,24 @@
 			 var userData = {};
 			
 			//设置展示数据
-			for (var j = 0; j < days + 1; j++) {
-			    var obj = {};
-			    obj.siteNo = "57988";
-			    obj.siteName = "乐昌";
-			    obj.avgVal = "0";
-			    obj.anomaly = "0";
-			    obj.yearAvgVal = "0";
-			    obj.rankMaxMin = "0";
-			    obj.rankMinMax = "0";
-			    obj.rankYear = "0";
-			    grid_data.push(obj)
-			}
+			if(days+1 >0 ){
+				for (var j = 0; j < siteNos.length; j++) {
+				    var obj = {};
+				    obj.siteNo = siteNos[j];
+				    obj.siteName =siteNames[j];
+				    if(select == "1"){
+					    for (var i = 0; i < colNames.length-2; i++) {
+					        obj["count"+i] = "0";
+					    }
+				    }else{
+				    	obj.startDate=dayAry[0];
+				    	obj.endDate=dayAry[days];
+				    	obj.level = "1";
+				    }
 			
+				    grid_data.push(obj)
+				}
+			}
 			
 			
 			//数据
@@ -774,13 +825,14 @@
 			    gridComplete: function () {
 			    	 var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr = $(footerTable.find("tr")[0]),
 				        data={
-				        	siteName:"平均值",
-				        	avgVal:days >0? "0":"",
-				        	anomaly:days >0? "0":"",
-				        	yearAvgVal:days >0? "0":"",
-				        			rankMaxMin:days >0? "0":"",
-				        					rankMinMax:days >0? "0":"",
-				        							rankYear:days >0? "0":""};
+				        	siteName:"平均值"};
+			    	   if(select == "1"){
+				    		 for (var i = 0; i < colNames.length-2; i++) {
+				    			 data["count"+i] =days >0? "0":"";
+						    }
+			    		 }else{
+			    			 data.level ="1";
+			    		 }
 		    			 footerTable.empty();
 		    			data["siteName"] = "灾害站平均值";
 		    			handerRowTr(tr,footerTable,gridTable,data,days,dayAry);
