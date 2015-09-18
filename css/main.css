@@ -56,3 +56,6 @@ div.modal-footer{
 .ui-jqgrid-sortable{
     text-align:center;
 }
+.iframe-dialog{
+    padding:0;
+}

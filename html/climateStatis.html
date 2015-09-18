@@ -1033,7 +1033,7 @@
     </div>
  	<!-- // end任意时段逐年统计资料 -->
  	<!-- //站点设置 -->
- 		<div id="siteSelect-container" class="row sub-container form-inline hiden">
+ 		<div id="siteSelect-container" class="row sub-container form-inline hidden">
 
 			<div class="widget-body">
 				<div class="widget-main">
@@ -1317,7 +1317,7 @@ require([ 'echarts',
 function siteSelect (){
 	BootstrapDialog.show({
     title: "站点选择",
-    message: $("#siteSelect-container").clone().removeClass("hidden"),
+    message: $("#siteSelect-container").clone().removeClass("hidden").show(),
     closable:false,
     height:'425',
     size:'size-wide',
