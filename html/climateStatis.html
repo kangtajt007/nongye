@@ -112,7 +112,7 @@
                             <i class="ace-icon fa fa-book bigger-160"></i>
                             任意逐年
                         </button>
-                        <button class="btn btn-app btn-success btn-xs" click-target="#setting-container" >
+                        <button class="btn btn-app btn-success btn-xs"  data-type="siteSelect">
                             <i class="ace-icon fa fa-cogs bigger-160"></i>
        		   站点选择
                         </button>
@@ -1032,231 +1032,141 @@
         </div>
     </div>
  	<!-- // end任意时段逐年统计资料 -->
- 	
- 		 <!-- //站点设置 -->
-            <div id="setting-container" class="row sub-container form-inline hidden">
-                <div class="widget-box widget-color-blue3">
-                    <div class="widget-header">
-                        <div class="widget-title">站点选择</div>
-                    </div>
-                    <div class="widget-body">
-                        <div class="widget-main">
-                            <div class="row search-div alert-success">
-                                <div class="col-sm-2">
-                                    <div class="alert ">
-                                        <span class="badge badge-warning badge-left fly-badge">站点类型</span>
-                                       		<div class="radio">
-                                                <label>
-                                                    <input name="form-xx-radio-setting" type="radio" class="ace"  checked="checked">
-                                                    <span class="lbl">国家自动站</span>
-                                                </label>
-                                            </div>
-                                            <div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input name="form-xx-radio-setting" type="radio" class="ace"  >
-                                                    <span class="lbl">区域自动站</span>
-                                                </label>
-                                            </div>
-                                            </div>
-                                              <div>
-		                                        <label>
-		                                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-		                                           <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">双选</span>
-		                                        </label>
-                                   			 </div>
-                        			</div>
-                        		</div>
-                        		<div class="col-sm-6">
-                                    <div class="alert ">
-                                        <span class="badge badge-warning badge-left fly-badge">筛选条件</span>
-                                        	 <div>
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">中部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">西南&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">东南&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">西北&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">东北&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                         <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">本县区</span>
-		                                        </label>
-                                   			 </div>
-                                   			  <div>
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">珠三角&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">粤西&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">粤东&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">粤北&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox" disabled="disabled">
-		                                            <span class="lbl">粤港澳&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                          &nbsp;&nbsp;&nbsp;&nbsp;
-		                                         <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">农气站</span>
-		                                        </label>
-                                   			 </div>
-                                   			 
-                                   			 <div>
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">潮州&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">东莞&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">佛山&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">广州&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">河源&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">惠州&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">江门&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-                                   			 </div>
-                                   			 
-                                   			  <div>
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">揭阳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">茂名&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">梅州&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">清远&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">汕头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">汕尾&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">韶关&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-                                   			 </div>
-                                   			  <div>
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">深圳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">阳江&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">云浮&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                        
-		                                        <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">湛江&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">肇庆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">中山&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-		                                            <label>
-		                                          <input name="switch-field-1" class="ace" type="checkbox">
-		                                            <span class="lbl">珠海&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                                        </label>
-                                   			 </div>
-                                   			 	
-                        			</div>
-                        		</div>
-                        	</div>
-                        	       	<div  style="height: 50px;width: 100%;">
-                        	       		   <button class="btn btn-white btn-default btn-round search-data" >
-                                        		<i class="ace-icon blue"></i>   全选
-                                    		</button>
-                                    			   <button class="btn btn-white btn-default btn-round search-data"">
-                                        		<i class="ace-icon blue"></i>   清空
-                                    		</button>
-                                    			   <button class="btn btn-white btn-default btn-round search-data">
-                                        		<i class="ace-icon blue"></i>   反选
-                                    		</button>
-                                    			
-                                    		<button class="btn btn-white btn-default btn-round search-data">
-                                        		<i class="ace-icon fa fa-ok blue"></i>  确定
-                                    		</button>
-                        	       	</div>
-                        	       	
-                        	<div  style="height: 300px;width: 100%;border: 1px solid #d6e9c6; ">
-                        	</div>
-                        
-                        </div>
-                      </div>
-               </div>
-            </div>    
-            <!-- //站点设置 -->        
+ 	<!-- //站点设置 -->
+ 		<div id="siteSelect-container" class="row sub-container form-inline hiden">
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="row search-div alert-success">
+						<div class="col-sm-2">
+							<div class="alert ">
+								<span class="badge badge-warning badge-left fly-badge">站点类型</span>
+								<div class="radio">
+									<label> <input name="form-site-type-radio"
+										type="radio" class="ace" checked="checked"> <span
+										class="lbl">国家自动站</span>
+									</label>
+								</div>
+								<div>
+									<div class="radio">
+										<label> <input name="form-site-type-radio"
+											type="radio" class="ace"> <span class="lbl">区域自动站</span>
+										</label>
+									</div>
+								</div>
+								<div>
+									<label>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input name="switch-field-siteDouleSelect" class="ace" type="checkbox">
+										<span class="lbl">双选</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-10">
+							<div class="alert ">
+								<span class="badge badge-warning badge-left fly-badge">筛选条件</span>
+								<div>
+									<label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">中部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">西南&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">东南&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">西北&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">东北&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label>
+										<input name="switch-field-siteSelect" class="ace" type="checkbox"  disabled="disabled">
+										<span class="lbl">本县区</span>
+									</label>
+								</div>
+								<div>
+									<label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">珠三角&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">粤西&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">粤东&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">粤北&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox" disabled="disabled"> <span class="lbl">粤港澳&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
+										name="switch-field-siteSelect" class="ace" type="checkbox"> <span
+										class="lbl">农气站</span>
+									</label>
+								</div>
+
+								<div>
+									<label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">潮州&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">东莞&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">佛山&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">广州&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">河源&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">惠州&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">江门&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label>
+								</div>
+
+								<div>
+									<label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">揭阳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">茂名&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">梅州&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">清远&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">汕头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">汕尾&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">韶关&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label>
+								</div>
+								<div>
+									<label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">深圳&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">阳江&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">云浮&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">湛江&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">肇庆&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">中山&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label> <label> <input name="switch-field-siteSelect" class="ace"
+										type="checkbox"> <span class="lbl">珠海&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</label>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row" style="height: 201px; width: 100%; border: 1px solid #d6e9c6;">
+					</div>
+				</div>
+			</div>
+			</div>
+ 		     
 </div>
 </div>
 </div>
@@ -1301,12 +1211,13 @@
 <script src="../js/ace/ace.widget-on-reload.js"></script>
 <script src="../js/ace/ace.searchbox-autocomplete.js"></script>
 <script src="../js/date-time/moment.js"></script>
-
+<script src="../js/bootstrap-dialog.min.js"></script>
 <script src="../js/bootstrap-datepicker.js"></script>
 
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
 <script src="../js/echarts/echarts.js"></script>
+<script src="../js/bootstrap-dialog.min.js"></script>
 <script>
 var __es = null;
 //Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
@@ -1353,8 +1264,6 @@ require([ 'echarts',
 	         ]);
 	     }
 	 }
-	console.info(heatData);
-	 
 
 	var option = {
 	     backgroundColor: '#e7e7e7',
@@ -1405,6 +1314,74 @@ require([ 'echarts',
      // 为echarts对象加载数据 
      myChart.setOption(option); 
 });
+function siteSelect (){
+	BootstrapDialog.show({
+    title: "站点选择",
+    message: $("#siteSelect-container").clone().removeClass("hidden"),
+    closable:false,
+    height:'425',
+    size:'size-wide',
+    buttons: [{
+        id: 'btn-ok',
+        label: '全选',
+        cssClass: 'btn btn-sm btn-corner btn-info fa fa-check-square',
+        autospin: false,
+        action: function(dialogRef){
+        	$('[name="switch-field-siteSelect"]').each(function () {
+        		if(!$(this).is(":disabled")){
+        			$(this).prop("checked", true);
+        		}
+        	});
+          
+        }
+    },{
+        id: 'btn-ok',
+        label: '清空',
+        cssClass: 'btn btn-sm btn-corner btn-info fa fa-times',
+        autospin: false,
+        action: function(dialogRef){
+        	$('[name="switch-field-siteSelect"]').each(function () {
+        		if(!$(this).is(":disabled")){
+        			$(this).prop("checked", false);
+        		}
+        	});
+        	
+        }
+    },{
+        id: 'btn-ok',
+        label: '反选',
+        cssClass: 'btn btn-sm btn-corner btn-info fa fa-check-square-o',
+        autospin: false,
+        action: function(dialogRef){
+        	  $('[name="switch-field-siteSelect"]').each(function () { 
+        			if(!$(this).is(":disabled")){
+                  $(this).prop("checked", !$(this).prop("checked"));  
+                  }
+              });   
+        }
+    },
+    {
+        id: 'btn-ok',
+        label: '确定',
+        cssClass: 'btn btn-sm btn-corner btn-warning fa fa-save',
+        autospin: false,
+        action: function(dialogRef){
+
+            dialogRef.close();
+        }
+    },
+    {
+        id: 'btn-cancel',
+        label: '取消',
+        cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
+        autospin: false,
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+}
+
     $(function () {
         $("[name='condition-switch']").click(function(){
             var me = $(this),checked = me.is(":checked"),parent = me.parents(".alert"), conditionInput = parent.find("[name='condition-input']");
@@ -1414,6 +1391,10 @@ require([ 'echarts',
         //二级菜单切换
         $("button.btn-app").click(function(){
             var me = $(this), target = me.attr("click-target"),dataType=me.attr("data-type");
+            if(dataType == "siteSelect"){
+            	siteSelect();
+            	return;
+            }
             $("div.sub-container").hide();
             $(target).removeClass("hidden").show();
             initTable(dataType);
@@ -1457,7 +1438,7 @@ require([ 'echarts',
 			    grid_data = [],
 			    colNames = ['站号', '站名'],
 			    colModels = [
-			                     {name: 'siteNo', index: 'siteNo', width: 60,editable: true},
+			                     {name: 'siteNo', index: 'siteNo', width: 60},
 			                     {name: 'siteName', index: 'siteName', width: 90}
 			                 ];
 			
@@ -1507,7 +1488,7 @@ require([ 'echarts',
 			//设置展示模型
 			for (var i = 0; i < days1; i++) {
 			    var c = dayAry[i];
-			    colModels.push({name: c, index: c, width: 70});
+			    colModels.push({name: c, index: c, width: 70, sorttype:"int",editable: true});
 			}
 			colModels.push({name: 'avg', index: 'avg', width: 50});
 			colModels.push({name: 'max', index: 'max', width: 50});
@@ -1515,6 +1496,7 @@ require([ 'echarts',
 			
 			//数据
 			$(grid_selector).html();
+			var lastsel2;
 			jQuery(grid_selector).jqGrid({
 			    data: grid_data,
 			    datatype: "local",
@@ -1532,7 +1514,14 @@ require([ 'echarts',
 			    gridComplete: function () {
 			    	handerFooterTable(dataGrid,gridTable,days1,dayAry);
 			    
-			    }
+			    },
+			    onSelectRow: function(id){
+					if(id && id!==lastsel2){
+						jQuery(grid_selector).jqGrid('editRow',id,true);
+						jQuery(grid_selector).jqGrid('saveRow',lastsel2);
+						lastsel2=id;
+					}
+				},
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
