@@ -209,6 +209,8 @@
             todayHighlight: true
         });
 
+        $(".fa-plus").click(addData);
+
         $('.chosen-select').chosen();
 
         $(".tooltip-success").tooltip();
@@ -221,7 +223,26 @@
         initTable("advices.json");
     });
 
-    //初始化情报预报表格
+    function addData(){
+        bootbox.dialog({
+            title:'新增——农业气象情报预报',
+            message:"hello",
+            locale:'zh_CN',
+            buttons:{
+                cancel:{
+                    label:"取消",
+                    callback:function(){}
+                },
+                ok:{
+                    label:"确认",
+                    callback:function(){
+                    }
+                }
+            }
+        });
+    }
+
+    //初始化表格
     function initTable(relJson){
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
@@ -235,24 +256,25 @@
             mtype:'GET',
             datatype:'json',
             width: 850,
-            height:270,
+            height:"auto",
             columnsresize: true,
             rownumbers: true,
             colModel: [
-                { label: '文件名', name: 'name', width: 250,sortable:false,formatter:formatName},
-                { label: '摘要', name: 'memo', width: 350,sortable:false ,formatter:formatMemo},
-                { label: '发布日期', name: 'publishDate', width: 150,sortable:false },
-                { label: '制作', name: 'maker', width: 120,sortable:false },
-                { label: '签发', name: 'issue', width: 120,sortable:false },
-                { label: '签发单位', name: 'issueUnit', width: 200,sortable:false },
-                { label: '操作', name: 'id', width: 250,formatter: formatTools,sortable:false}
+                { label: '文件名', name: 'name', width: 250,sortable:false,formatter:formatName, align: "center" },
+                { label: '摘要', name: 'memo', width: 350,sortable:false ,formatter:formatMemo, align: "center" },
+                { label: '发布日期', name: 'publishDate', width: 100,sortable:false , align: "center" },
+                { label: '制作', name: 'maker', width: 120,sortable:false , align: "center" },
+                { label: '签发', name: 'issue', width: 120,sortable:false , align: "center" },
+                { label: '签发单位', name: 'issueUnit', width: 200,sortable:false, align: "center"  },
+                { label: '操作', name: 'id', width: 250,formatter: formatTools,sortable:false, align: "center" }
             ],
             altRows: true,
+            rowNum:10,
             pager: "#jqGridPager"
         });
 
         function formatName(cellValue, options, rowObject){
-            var link = $('<a href="#" class="blue"></a>');
+            var link = $('<a href="http://www.gdnw.net/Weather_Info/" target="_blank" class="blue"></a>');
             link.html(cellValue.length > 18?cellValue.substring(0,18)+"...":cellValue);
             return link[0].outerHTML;
         }

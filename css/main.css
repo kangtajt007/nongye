@@ -53,3 +53,6 @@ div.modal-footer{
 .search-table td{
     padding-left: 10px;
 }
+.ui-jqgrid-sortable{
+    text-align:center;
+}
