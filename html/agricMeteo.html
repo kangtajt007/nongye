@@ -556,15 +556,15 @@
 
     //初始化生育期表格
     function initGrowthTable(){
+        var t = $("#growth-table");
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
-            $("#growth-table").jqGrid('setGridWidth', $(".search-div").width()-20);
-            $("#growth-table").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
+            t.jqGrid('setGridWidth', $(".search-div").width()-20);
+            t.closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         });
 
-        var url = "../json/agric/growth.json";
-
-        $("#growth-table").jqGrid(
+        var url = "../json/agric/growth.json",lastsel2;
+        t.jqGrid(
         {
             url:url,
             mtype:'GET',
@@ -583,7 +583,14 @@
             ],
             altRows: true,
             rowNum:10,
-            pager: "#growthGridPager"
+            pager: "#growthGridPager",
+            onSelectRow: function(id){
+                if(id && id!==lastsel2){
+                    t.jqGrid('editRow',id,true);
+                    t.jqGrid('saveRow',lastsel2);
+                    lastsel2=id;
+                }
+            }
         });
     }
 
@@ -596,7 +603,7 @@
             t.closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         });
 
-        var url = "../json/agric/feature.json";
+        var url = "../json/agric/feature.json",lastsel2;
 
         t.jqGrid(
         {
@@ -610,14 +617,21 @@
             colModel: [
                 {name: 'siteNo', label: '站号', width: 70,sortable:false,align: "center"},
                 {name: 'siteName', label: '站名', width: 80,sortable:false,align: "center"},
-                {name: 'growthDate', label: '日照适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'distanceAvg', label: '气温适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'growthSituation', label: '降水适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'observeDate', label: '综合适宜度', width: 100,sortable:false,align: "center"}
+                {name: 'growthDate', label: '日照适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'distanceAvg', label: '气温适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'growthSituation', label: '降水适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'observeDate', label: '综合适宜度', width: 100,sortable:false,align: "center",editable:true}
             ],
             altRows: true,
             rowNum:10,
-            pager: "#featureGridPager"
+            pager: "#featureGridPager",
+            onSelectRow: function(id){
+                if(id && id!==lastsel2){
+                    t.jqGrid('editRow',id,true);
+                    t.jqGrid('saveRow',lastsel2);
+                    lastsel2=id;
+                }
+            }
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
