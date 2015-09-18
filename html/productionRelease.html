@@ -355,9 +355,9 @@
         }
 
         function formatTools(cellValue, options, rowObject){
-            var html = '<div class="btn-group btn-corner"><button class="btn btn-sm btn-corner btn-success fa fa-edit" onclick="updateRow('+rowObject.id+')">编辑</button>'
-                       +'<button class="btn btn-sm btn-corner btn-info fa fa-signal">签发</button>'
-                       +'<button class="btn btn-sm btn-corner btn-danger fa fa-remove" onclick="removeRow('+rowObject.id+')">删除</button></div>';
+            var html = '<div class="btn-group btn-corner"><button class="btn btn-sm btn-success fa fa-edit" onclick="updateRow('+rowObject.id+')">编辑</button>'
+                       +'<button class="btn btn-sm btn-info fa fa-signal">签发</button>'
+                       +'<button class="btn btn-sm btn-danger fa fa-remove" onclick="removeRow('+rowObject.id+')">删除</button></div>';
             return html;
         }
         $("#advicesTable").trigger("reloadGrid");
