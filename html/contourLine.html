@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>等值线图</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/font-awesome.css"/>
+    <link rel="stylesheet" href="../css/datepicker.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <!-- page specific plugin styles -->
+    <!-- text fonts -->
+    <link rel="stylesheet" href="../css/ace-fonts.css"/>
+    <link rel="stylesheet" href="../css/jquery.range.css"/>
+    <link rel="stylesheet" href="../css/ui.jqgrid.css"/>
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../css/ace-ie.css"/>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script src="../js/html5shiv.js"></script>
+    <script src="../js/respond.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin" style="overflow: hidden;">
+
+<div class="main-container" id="main-container">
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="row">
+                <div class="well well-sm">
+                    <label>
+                        <input name="switch-field-1" class="ace" type="checkbox">
+                        <span class="lbl">图片标题</span>
+                    </label>
+                    <input type="text" class="input input-xxlarge"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="alert alert-success">
+                    <span class="badge badge-warning badge-left fly-badge">颜色等级选择</span>
+                    <div class="input-group input-group-sm">
+                        <div class="radio">
+                            <label>
+                                <input name="display-type-radio" type="radio" class="ace" checked="checked">
+                                <span class="lbl">自动颜色等级</span>
+                            </label>
+                        </div>
+                        <div>
+                            <table class="">
+                                <tr>
+                                    <td width="80"></td>
+                                    <td width="70" class="align-middle">最小值:</td>
+                                    <td>
+                                        <input type="text" class="input input-small"/>
+                                    </td>
+                                    <td width="70" class="align-middle">最大值:</td>
+                                    <td>
+                                        <input type="text"  class="input input-small"/>
+                                    </td>
+                                    <td width="100" class="align-middle">等值线间隔:</td>
+                                    <td>
+                                        <input type="text"  class="input input-small"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="input-group input-group-sm">
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="color-type-radio" type="radio" class="ace" checked="checked">
+                                                    <span class="lbl">冷色-暖色</span>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input name="color-type-radio" type="radio" class="ace" checked="checked">
+                                                    <span class="lbl">暖色-冷色</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="4">
+                                        <div>
+                                            <span id="myslider"></span>
+                                        </div>
+                                        <div class="color-block">
+                                            <div style="background: #340E81;"></div>
+                                            <div style="background: #5441B7;"></div>
+                                            <div style="background: #4D66D2;"></div>
+                                            <div style="background: #3B92DB;"></div>
+                                            <div style="background: #6FB1D4;"></div>
+                                            <div style="background: #9EE3D4;"></div>
+                                            <div style="background: #FAF9D5;"></div>
+                                            <div style="background: #FDE47E;"></div>
+                                            <div style="background: #FCC966;"></div>
+                                            <div style="background: #FA9505;"></div>
+                                            <div style="background: #F64D15;"></div>
+                                            <div style="background: #E80505;"></div>
+                                            <div style="background: #BC022E;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="input-group input-group-sm">
+                        <div class="radio">
+                            <label>
+                                <input name="display-type-radio" type="radio" class="ace">
+                                <span class="lbl">自定义颜色等级</span>
+                            </label>
+                        </div>
+                        <div style="margin-left: 85px;">
+                            <input type="file" name="myfile" id="my-file-input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="alert alert-success">
+                        <span class="badge badge-warning badge-left fly-badge">控制选项</span>
+                        <div class="input-group input-group-sm">
+                            <div class="radio">
+                                <label>
+                                    <input name="control-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">自动出图</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="control-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">手动控制</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div class="alert alert-success">
+                        <span class="badge badge-warning badge-left fly-badge">出图分辨率</span>
+                        <div class="input-group input-group-sm" style="display: inline-block;width: 120px;">
+                            <div class="radio">
+                                <label>
+                                    <input name="resolution-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">800×600</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="resolution-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">1600×1200</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-group input-group-sm" style="display: inline-block;width: 200px;">
+                            <div class="radio">
+                                <label>
+                                    <input name="resolution-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">1200×900</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="resolution-radio" type="radio" class="ace" checked="checked">
+                                    <span class="lbl">2000×1500</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .ace-file-container{
+        width:600px;
+    }
+    a.remove{
+        left:610px;
+    }
+    .color-block{
+        height:40px;
+    }
+    .color-block{
+        margin-top:25px;
+    }
+    .color-block div{
+        display: inline-block;
+        width:20px;
+        height:30px;
+    }
+    .theme-blue{
+        margin-top:30px;
+    }
+</style>
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../js/jquery.js'>" + "<" + "/script>");
+</script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../js/jquery1x.js'>" + "<" + "/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../js/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../js/bootstrap.js"></script>
+<!-- page specific plugin scripts -->
+<!-- ace scripts -->
+<script src="../js/ace/elements.scroller.js"></script>
+<script src="../js/ace/elements.colorpicker.js"></script>
+<script src="../js/ace/elements.fileinput.js"></script>
+<script src="../js/ace/elements.typeahead.js"></script>
+<script src="../js/ace/elements.wysiwyg.js"></script>
+<script src="../js/ace/elements.spinner.js"></script>
+<script src="../js/ace/elements.treeview.js"></script>
+<script src="../js/ace/elements.wizard.js"></script>
+<script src="../js/ace/elements.aside.js"></script>
+<script src="../js/ace/ace.js"></script>
+<script src="../js/ace/ace.ajax-content.js"></script>
+<script src="../js/ace/ace.touch-drag.js"></script>
+<script src="../js/ace/ace.sidebar.js"></script>
+<script src="../js/ace/ace.sidebar-scroll-1.js"></script>
+<script src="../js/ace/ace.submenu-hover.js"></script>
+<script src="../js/ace/ace.widget-box.js"></script>
+<script src="../js/ace/ace.settings.js"></script>
+<script src="../js/ace/ace.settings-rtl.js"></script>
+<script src="../js/ace/ace.settings-skin.js"></script>
+<script src="../js/ace/ace.widget-on-reload.js"></script>
+<script src="../js/ace/ace.searchbox-autocomplete.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+<script src="../js/jquery.range-min.js"></script>
+<script>
+    $(function(){
+        $('#my-file-input').ace_file_input({
+            no_file: '选择自定义颜色等级文件',
+            maxSize: 1000000, //~100 KB
+            btn_choose:'选择文件',
+            btn_change:'更换文件',
+            allowExt:  ['jpg', 'jpeg', 'png', 'gif', 'tif', 'tiff', 'bmp','lvl']
+        });
+
+        $('#myslider').jRange({
+            from: 0,
+            to: 100,
+            step: 1,
+            scale: [0,25,50,75,100],
+            format: '%s',
+            width: 300,
+            showLabels: true,
+            isRange : true,
+            theme:'theme-blue'
+        });
+    });
+</script>
+</body>
+</html>
