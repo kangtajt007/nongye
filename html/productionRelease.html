@@ -79,23 +79,23 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="well">
-                        <button class="btn btn-app btn-success btn-xs active" click-target="#advices-container">
+                        <button class="btn btn-app btn-success btn-xs active" title="农业气象情报预报" rel-json="advices.json">
                             <i class="ace-icon fa fa-list-alt bigger-160"></i>
                             情报预报
                         </button>
-                        <button class="btn btn-app btn-purple btn-xs" click-target="#agricultural-container">
+                        <button class="btn btn-app btn-purple btn-xs" title="农用天气预报" rel-json="agricultural.json">
                             <i class="ace-icon fa fa-newspaper-o bigger-160"></i>
                             农用预报
                         </button>
-                        <button class="btn btn-app btn-pink btn-xs" click-target="#critical-container">
+                        <button class="btn btn-app btn-pink btn-xs" title="作物关键期气象服务" rel-json="critical.json">
                             <i class="ace-icon fa fa-vimeo-square bigger-160"></i>
                             关键期
                         </button>
-                        <button class="btn btn-app btn-danger btn-xs" click-target="#disaster-container">
+                        <button class="btn btn-app btn-danger btn-xs" title="灾害专题" rel-json="disaster.json">
                             <i class="ace-icon fa fa-bolt bigger-160"></i>
                             灾害专题
                         </button>
-                        <button class="btn btn-app btn-info btn-xs" click-target="#station-container">
+                        <button class="btn btn-app btn-info btn-xs" title="台站农情" rel-json="station.json">
                             <i class="ace-icon fa fa-bank bigger-160"></i>
                             台站农情
                         </button>
@@ -153,14 +153,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="agricultural-container" class="row sub-container">
-            </div>
-            <div id="critical-container" class="row sub-container">
-            </div>
-            <div id="disaster-container" class="row sub-container">
-            </div>
-            <div id="station-container" class="row sub-container">
             </div>
         </div>
     </div>
@@ -222,20 +214,20 @@
         $(".tooltip-success").tooltip();
 
         $("button.btn-app").click(function(){
-            var me = $(this), target = me.attr("click-target");
-            $("div.sub-container").hide();
-            $(target).removeClass("hidden").show();
-            initAdvicesTable();
+            var me = $(this), title = me.attr("title"),relJson = me.attr("rel-json");
+            $(".widget-title").html(title);
+            initTable(relJson);
         });
+        initTable("advices.json");
     });
 
     //初始化情报预报表格
-    function initAdvicesTable(){
+    function initTable(relJson){
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
             $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width());
         });
-        var url = "../json/advices.json";
+        var url = "../json/production/" + relJson;
 
         $("#advicesTable").jqGrid(
         {
@@ -243,6 +235,7 @@
             mtype:'GET',
             datatype:'json',
             width: 850,
+            height:270,
             columnsresize: true,
             rownumbers: true,
             colModel: [
@@ -252,7 +245,7 @@
                 { label: '制作', name: 'maker', width: 120,sortable:false },
                 { label: '签发', name: 'issue', width: 120,sortable:false },
                 { label: '签发单位', name: 'issueUnit', width: 200,sortable:false },
-                { label: '操作', name: 'id', width: 300,formatter: formatTools,sortable:false}
+                { label: '操作', name: 'id', width: 250,formatter: formatTools,sortable:false}
             ],
             altRows: true,
             pager: "#jqGridPager"
