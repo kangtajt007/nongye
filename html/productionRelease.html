@@ -156,6 +156,48 @@
             </div>
         </div>
     </div>
+    <div class="hidden" id="add-data-container">
+        <div class="row">
+            <div class="well well-sm">当前日期：
+                <span class="green">2015-9-18</span>旬报处于第9月中旬(2015-9-20至2015-9-30)，旬报上一报告周期是：
+                <span class="red">第9月上旬(2015-9-1至2015-9-10)</span>
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="150" class="align-right align-middle">摘要</th>
+                        <td>
+                            <textarea class="form-control" placeholder="摘要"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-right align-middle">前期农业气候评价</th>
+                        <td>
+                            <textarea class="form-control" placeholder="前期农业气候评价"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-right align-middle">未来天气建议</th>
+                        <td>
+                            <textarea class="form-control" placeholder="未来天气建议"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-right align-middle">农业生产建议</th>
+                        <td>
+                            <textarea class="form-control" placeholder="农业生产建议"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-right align-middle">土壤水分分析</th>
+                        <td>
+                            <textarea class="form-control" placeholder="土壤水分分析"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--[if !IE]> -->
@@ -201,44 +243,68 @@
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-cn.js"></script>
 <script src="../js/chosen.jquery.js"></script>
-<script src="../js/bootbox.js"></script>
+<script src="../js/bootstrap-dialog.min.js"></script>
 <script>
+    var relJson = "advices.json";
     $(function () {
         $(".date-picker").datepicker({
             autoclose: true,
             todayHighlight: true
         });
 
-        $(".fa-plus").click(addData);
+        $(".fa-plus").click(addUpdateData);
+
+        $(".fa-search").click(function(){
+            initTable(relJson);
+        });
 
         $('.chosen-select').chosen();
 
         $(".tooltip-success").tooltip();
 
         $("button.btn-app").click(function(){
-            var me = $(this), title = me.attr("title"),relJson = me.attr("rel-json");
+            var me = $(this), title = me.attr("title");
+            relJson = me.attr("rel-json");
             $(".widget-title").html(title);
             initTable(relJson);
         });
-        initTable("advices.json");
+        initTable(relJson);
     });
 
-    function addData(){
-        bootbox.dialog({
-            title:'新增——农业气象情报预报',
-            message:"hello",
-            locale:'zh_CN',
-            buttons:{
-                cancel:{
-                    label:"取消",
-                    callback:function(){}
-                },
-                ok:{
-                    label:"确认",
-                    callback:function(){
-                    }
+    function addUpdateData(data){
+        BootstrapDialog.show({
+            title: $(".widget-title").html(),
+            message: $("#add-data-container").clone().removeClass("hidden"),
+            closable:false,
+            size:'size-wide',
+            buttons: [{
+                id: 'btn-ok',
+                label: '确定',
+                cssClass: 'btn btn-sm btn-corner btn-info fa fa-save',
+                autospin: false,
+                action: function(dialogRef){
+
+                    $("#advicesTable").jqGrid("addRowData",6,{
+                        "id":6,
+                        "name": "农业气象旬报2015年第24期",
+                        "memo": "8月下旬我省气温、降水正常，日照略偏少，旬前、中期多雷雨天气，后期转晴热。",
+                        "publishDate": "2015-9-2",
+                        "maker": "李慕华",
+                        "issue": "郭援朝",
+                        "issueUnit": "广东省气候中心"
+                    });
+                    dialogRef.close();
                 }
-            }
+            },
+            {
+                id: 'btn-cancel',
+                label: '取消',
+                cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
+                autospin: false,
+                action: function(dialogRef){
+                    dialogRef.close();
+                }
+            }]
         });
     }
 
@@ -246,7 +312,7 @@
     function initTable(relJson){
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
-            $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width());
+            $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width()-20);
         });
         var url = "../json/production/" + relJson;
 
@@ -289,13 +355,21 @@
         }
 
         function formatTools(cellValue, options, rowObject){
-            var html = '<div class="btn-group btn-corner"><button class="btn btn-sm btn-corner btn-success fa fa-edit">编辑</button>'
+            var html = '<div class="btn-group btn-corner"><button class="btn btn-sm btn-corner btn-success fa fa-edit" onclick="updateRow('+rowObject.id+')">编辑</button>'
                        +'<button class="btn btn-sm btn-corner btn-info fa fa-signal">签发</button>'
-                       +'<button class="btn btn-sm btn-corner btn-danger fa fa-remove">删除</button></div>';
+                       +'<button class="btn btn-sm btn-corner btn-danger fa fa-remove" onclick="removeRow('+rowObject.id+')">删除</button></div>';
             return html;
         }
-
+        $("#advicesTable").trigger("reloadGrid");
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+    }
+
+    function removeRow(rowId){
+        $("#advicesTable").jqGrid("delRowData",rowId);
+    }
+
+    function updateRow(rowId){
+        addUpdateData();
     }
 </script>
 </body>
