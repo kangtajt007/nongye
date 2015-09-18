@@ -286,18 +286,20 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round  search-data" data-type="day">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                      <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="day">
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button>
+                                         <button class="btn btn-sm btn-inverse fa fa-cogs" onclick="siteSelect()">
+              	站点选择
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -517,18 +519,17 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round search-data" data-type="month">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                     <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="month">
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -776,18 +777,17 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round search-data" data-type="time">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                     <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="time" >
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -1008,18 +1008,17 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round search-data" data-type="year">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                    <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="year">
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -1218,6 +1217,7 @@
 <script src="../js/jqGrid/i18n/grid.locale-en.js"></script>
 <script src="../js/echarts/echarts.js"></script>
 <script src="../js/bootstrap-dialog.min.js"></script>
+<script src="../js/util.js"></script>
 <script>
 var __es = null;
 //Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
@@ -1314,73 +1314,7 @@ require([ 'echarts',
      // 为echarts对象加载数据 
      myChart.setOption(option); 
 });
-function siteSelect (){
-	BootstrapDialog.show({
-    title: "站点选择",
-    message: $("#siteSelect-container").clone().removeClass("hidden").show(),
-    closable:false,
-    height:'425',
-    size:'size-wide',
-    buttons: [{
-        id: 'btn-ok',
-        label: '全选',
-        cssClass: 'btn btn-sm btn-corner btn-info fa fa-check-square',
-        autospin: false,
-        action: function(dialogRef){
-        	$('[name="switch-field-siteSelect"]').each(function () {
-        		if(!$(this).is(":disabled")){
-        			$(this).prop("checked", true);
-        		}
-        	});
-          
-        }
-    },{
-        id: 'btn-ok',
-        label: '清空',
-        cssClass: 'btn btn-sm btn-corner btn-info fa fa-times',
-        autospin: false,
-        action: function(dialogRef){
-        	$('[name="switch-field-siteSelect"]').each(function () {
-        		if(!$(this).is(":disabled")){
-        			$(this).prop("checked", false);
-        		}
-        	});
-        	
-        }
-    },{
-        id: 'btn-ok',
-        label: '反选',
-        cssClass: 'btn btn-sm btn-corner btn-info fa fa-check-square-o',
-        autospin: false,
-        action: function(dialogRef){
-        	  $('[name="switch-field-siteSelect"]').each(function () { 
-        			if(!$(this).is(":disabled")){
-                  $(this).prop("checked", !$(this).prop("checked"));  
-                  }
-              });   
-        }
-    },
-    {
-        id: 'btn-ok',
-        label: '确定',
-        cssClass: 'btn btn-sm btn-corner btn-warning fa fa-save',
-        autospin: false,
-        action: function(dialogRef){
 
-            dialogRef.close();
-        }
-    },
-    {
-        id: 'btn-cancel',
-        label: '取消',
-        cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
-        autospin: false,
-        action: function(dialogRef){
-            dialogRef.close();
-        }
-    }]
-});
-}
 
     $(function () {
         $("[name='condition-switch']").click(function(){
@@ -1521,7 +1455,7 @@ function siteSelect (){
 						jQuery(grid_selector).jqGrid('saveRow',lastsel2);
 						lastsel2=id;
 					}
-				},
+				}
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }

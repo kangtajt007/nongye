@@ -506,6 +506,7 @@
 <script src="../js/jqGrid/jquery.jqGrid.src.js"></script>
 <script src="../js/jqGrid/i18n/grid.locale-cn.js"></script>
 <script src="../js/bootstrap-dialog.min.js"></script>
+<script src="../js/util.js"></script>
 <script>
     $(function () {
         $("#iframe").height(1024);
@@ -556,15 +557,15 @@
 
     //初始化生育期表格
     function initGrowthTable(){
+        var t = $("#growth-table");
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
-            $("#growth-table").jqGrid('setGridWidth', $(".search-div").width()-20);
-            $("#growth-table").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
+            t.jqGrid('setGridWidth', $(".search-div").width()-20);
+            t.closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         });
 
-        var url = "../json/agric/growth.json";
-
-        $("#growth-table").jqGrid(
+        var url = "../json/agric/growth.json",lastsel2;
+        t.jqGrid(
         {
             url:url,
             mtype:'GET',
@@ -583,7 +584,14 @@
             ],
             altRows: true,
             rowNum:10,
-            pager: "#growthGridPager"
+            pager: "#growthGridPager",
+            onSelectRow: function(id){
+                if(id && id!==lastsel2){
+                    t.jqGrid('editRow',id,true);
+                    t.jqGrid('saveRow',lastsel2);
+                    lastsel2=id;
+                }
+            }
         });
     }
 
@@ -596,7 +604,7 @@
             t.closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         });
 
-        var url = "../json/agric/feature.json";
+        var url = "../json/agric/feature.json",lastsel2;
 
         t.jqGrid(
         {
@@ -610,72 +618,26 @@
             colModel: [
                 {name: 'siteNo', label: '站号', width: 70,sortable:false,align: "center"},
                 {name: 'siteName', label: '站名', width: 80,sortable:false,align: "center"},
-                {name: 'growthDate', label: '日照适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'distanceAvg', label: '气温适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'growthSituation', label: '降水适宜度', width: 70,sortable:false,align: "center"},
-                {name: 'observeDate', label: '综合适宜度', width: 100,sortable:false,align: "center"}
+                {name: 'growthDate', label: '日照适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'distanceAvg', label: '气温适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'growthSituation', label: '降水适宜度', width: 70,sortable:false,align: "center",editable:true},
+                {name: 'observeDate', label: '综合适宜度', width: 100,sortable:false,align: "center",editable:true}
             ],
             altRows: true,
             rowNum:10,
-            pager: "#featureGridPager"
+            pager: "#featureGridPager",
+            onSelectRow: function(id){
+                if(id && id!==lastsel2){
+                    t.jqGrid('editRow',id,true);
+                    t.jqGrid('saveRow',lastsel2);
+                    lastsel2=id;
+                }
+            }
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
     }
 
-    function contourLine(){
-        BootstrapDialog.show({
-            title: "等值线图设置",
-            url:'contourLine.html',
-            closable:false,
-            size:'size-wide',
-            buttons: [{
-                id: 'btn-ok',
-                label: '确定',
-                cssClass: 'btn btn-sm btn-corner btn-info fa fa-save',
-                autospin: false,
-                action: function(dialogRef){
-                    outputContourLineImage();
-                    dialogRef.close();
-                }
-            },
-                {
-                    id: 'btn-cancel',
-                    label: '取消',
-                    cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
-                    autospin: false,
-                    action: function(dialogRef){
-                        dialogRef.close();
-                    }
-                }]
-        });
-    }
-
-    function outputContourLineImage(){
-        BootstrapDialog.show({
-            title: "等值线图",
-            url:'contourLineImage.html',
-            closable:false,
-            size:'size-wide',
-            buttons: [{
-                id: 'btn-ok',
-                label: '保存',
-                cssClass: 'btn btn-sm btn-corner btn-info fa fa-save',
-                autospin: false,
-                action: function(dialogRef){
-                    dialogRef.close();
-                }
-            },
-                {
-                    id: 'btn-cancel',
-                    label: '关闭',
-                    cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
-                    autospin: false,
-                    action: function(dialogRef){
-                        dialogRef.close();
-                    }
-                }]
-        });
-    }
+  
 </script>
 </body>
 </html>

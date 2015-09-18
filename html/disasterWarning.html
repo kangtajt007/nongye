@@ -104,6 +104,10 @@
                             <i class="ace-icon fa fa-life-ring bigger-160"></i>
                             任意时段
                         </button>
+                         <button class="btn btn-app btn-success btn-xs"  data-type="siteSelect">
+                            <i class="ace-icon fa fa-cogs bigger-160"></i>
+       		   站点选择
+                        </button>
                     </div>
                 </div>
             </div>
@@ -235,18 +239,17 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round  search-data" data-type="day">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                      <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="day">
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button> 
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -395,18 +398,17 @@
                                             <span class="lbl"> 输出经纬度</span>
                                         </label>
                                     </div>
-                                    <button class="btn btn-white btn-default btn-round search-data" data-type="time">
-                                        <i class="ace-icon fa fa-search blue"></i>
-                                        数据查询
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-map-marker green"></i>
-                                        等值线图
-                                    </button>
-                                    <button class="btn btn-white btn-default btn-round">
-                                        <i class="ace-icon fa fa-file-o red2"></i>
-                                        保存结果
-                                    </button>
+                                      <div class="btn-group btn-corner" style="margin-top: 15px;">
+                                        <button class="btn btn-sm btn-success fa fa-search search-data" data-type="time">
+                                            数据查询
+                                        </button>
+                                        <button class="btn btn-sm btn-info btn-default fa fa-map-marker" onclick="contourLine()">
+                                            等值线图
+                                        </button>
+                                        <button class="btn btn-sm btn-pink fa fa-file-o">
+                                            保存结果
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
