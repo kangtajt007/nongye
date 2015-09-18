@@ -1512,7 +1512,7 @@ function siteSelect (){
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			    	handerFooterTable(dataGrid,gridTable,days1,dayAry);
+			    	handerFooterTable(dataGrid,gridTable,days1,dayAry,colModels.length);
 			    
 			    },
 			    onSelectRow: function(id){
@@ -1593,7 +1593,7 @@ function siteSelect (){
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
 			    	var obj = ["avgVal","anomaly","yearAvgVal","rankMaxMin","rankMinMax","rankYear"];
-			    	 handerFooterTable(dataGrid,gridTable,days1,dayAry,obj);
+			    	 handerFooterTable(dataGrid,gridTable,days1,dayAry,colModels.length,obj);
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
@@ -1686,7 +1686,7 @@ function siteSelect (){
 			    userData:userData,
 			    userDataOnFooter: true, 
 			    gridComplete: function () {
-			    	handerFooterTable(dataGrid,gridTable,days1,dayAry);
+			    	handerFooterTable(dataGrid,gridTable,days1,dayAry,colModels.length);
 			    }
 			});
 			$(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
@@ -1712,7 +1712,7 @@ function siteSelect (){
     }
     
     
-    function handerFooterTable(dataGrid,gridTable,days1,dayAry,obj){
+    function handerFooterTable(dataGrid,gridTable,days1,dayAry,colModelsLength,obj){
         var footerTable = $("#"+dataGrid+" .ui-jqgrid-ftable"),tr = $(footerTable.find("tr")[0]),
         data={
         	siteName:"平均值",
@@ -1726,20 +1726,24 @@ function siteSelect (){
         	}
         }
        	data["siteName"] = "平均值";
-    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
+    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry,colModelsLength);
     	data["siteName"] = "最小值";
-    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
+    	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry,colModelsLength);
     	data["siteName"] = "最大值";
     	handerRowTr(tr,footerTable,gridTable,data,days1,dayAry);
     }
-    function handerRowTr(tr,footerTable,gridTable,data,days,dayAry){
+    function handerRowTr(tr,footerTable,gridTable,data,days,dayAry,colModelsLength){
     	var rowTr =tr.clone(true,true);
-        handerData(rowTr,gridTable,data,days,dayAry);
+        handerData(rowTr,gridTable,data,days,dayAry,colModelsLength);
 		footerTable.append(rowTr);
     }
     
-    function handerData(tr,gridTable,data,days,dayAry){
-  	  $('[aria-describedby="'+gridTable+'_rn"]', tr).width("6px");
+    function handerData(tr,gridTable,data,days,dayAry,colModelsLength){
+    	var w = "6px";
+    	if(colModelsLength >10){
+    		w =$("#"+gridTable+"_rn").width()
+    	}
+ 	 	 $('[aria-describedby="'+gridTable+'_rn"]', tr).width(w);
     	for(var i in data){
             $('[aria-describedby="'+gridTable+'_'+i+'"]', tr).html(data[i]);	
     	}

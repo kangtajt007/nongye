@@ -873,7 +873,7 @@
     }
     
     function handerData(tr,gridTable,data,days,dayAry){
-  	 	 $('[aria-describedby="'+gridTable+'_rn"]', tr).width("6px");
+  	 	 $('[aria-describedby="'+gridTable+'_rn"]', tr).width($("#"+gridTable+"_rn").width());
     	for(var i in data){
             $('[aria-describedby="'+gridTable+'_'+i+'"]', tr).html(data[i]);	
     	}
