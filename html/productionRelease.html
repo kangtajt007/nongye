@@ -312,7 +312,8 @@
     function initTable(relJson){
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
-            $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width()-20);
+            $("#advicesTable").jqGrid('setGridWidth', $(".widget-main").width()-30);
+            $("#advicesTable").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         });
         var url = "../json/production/" + relJson;
 
