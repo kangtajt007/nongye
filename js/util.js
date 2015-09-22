@@ -67,23 +67,39 @@ function siteSelect (){
     closable:false,
     height:'320',
     buttons: [
+        {
+            id: 'btn-ok',
+            label: '确定',
+            cssClass: 'btn btn-sm btn-corner btn-info fa fa-save',
+            autospin: false,
+            action: function(dialogRef){
+                dialogRef.close();
+            }
+        },
+        {
+            id: 'btn-cancel',
+            label: '取消',
+            cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
+            autospin: false,
+            action: function(dialogRef){
+                dialogRef.close();
+            }
+        }]
+    });
+}
+//replace icons with FontAwesome icons like above
+function updatePagerIcons() {
+    var replacement =
     {
-        id: 'btn-ok',
-        label: '确定',
-        cssClass: 'btn btn-sm btn-corner btn-info fa fa-save',
-        autospin: false,
-        action: function(dialogRef){
-            dialogRef.close();
-        }
-    },
-    {
-        id: 'btn-cancel',
-        label: '取消',
-        cssClass: 'btn btn-sm btn-corner btn-default fa fa-undo',
-        autospin: false,
-        action: function(dialogRef){
-            dialogRef.close();
-        }
-    }]
-});
+        'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+        'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+        'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+        'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+    };
+    $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+        var icon = $(this);
+        var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+        if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+    })
 }

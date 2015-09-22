@@ -603,6 +603,11 @@
             altRows: true,
             rowNum:10,
             pager: "#growthGridPager",
+            loadComplete:function(){
+                setTimeout(function(){
+                    updatePagerIcons();
+                }, 0);
+            },
             onSelectRow: function(id){
                 if(id && id!==lastsel2){
                     t.jqGrid('editRow',id,true);
@@ -642,6 +647,11 @@
                 {name: 'observeDate', label: '综合适宜度', width: 100,sortable:false,align: "center",editable:true}
             ],
             altRows: true,
+            loadComplete:function(){
+                setTimeout(function(){
+                    updatePagerIcons();
+                }, 0);
+            },
             rowNum:10,
             pager: "#featureGridPager",
             onSelectRow: function(id){

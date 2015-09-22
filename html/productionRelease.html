@@ -244,6 +244,7 @@
 <script src="../js/jqGrid/i18n/grid.locale-cn.js"></script>
 <script src="../js/chosen.jquery.js"></script>
 <script src="../js/bootstrap-dialog.min.js"></script>
+<script src="../js/util.js"></script>
 <script>
     var relJson = "advices.json";
     $(function () {
@@ -335,6 +336,11 @@
                 { label: '签发单位', name: 'issueUnit', width: 200,sortable:false, align: "center"  },
                 { label: '操作', name: 'id', width: 250,formatter: formatTools,sortable:false, align: "center" }
             ],
+            loadComplete:function(){
+                setTimeout(function(){
+                    updatePagerIcons();
+                }, 0);
+            },
             altRows: true,
             rowNum:10,
             pager: "#jqGridPager"
