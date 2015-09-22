@@ -1133,10 +1133,10 @@
                 }];
 
         //获取时间数组   
-        dayAry.push(startDate.format("MM-DD"));
+        dayAry.push(startDate.format("MM月DD日"));
         for (var i = 0; i < days; i++) {
             var c = startDate.add(1, 'd');
-            dayAry.push(c.format("MM-DD"));
+            dayAry.push(c.format("MM月DD日"));
         }
         //设置自定义数据
         var userData = {};
@@ -1224,11 +1224,11 @@
 
             },
             onSelectRow: function(id) {
-                if (id && id !== lastsel2) {
-                    jQuery(grid_selector).jqGrid('editRow', id, true);
-                    jQuery(grid_selector).jqGrid('saveRow', lastsel2);
-                    lastsel2 = id;
-                }
+//                if (id && id !== lastsel2) {
+//                   jQuery(grid_selector).jqGrid('editRow', id, true);
+ //                   jQuery(grid_selector).jqGrid('saveRow', lastsel2);
+  //                  lastsel2 = id;
+ //               }
             }
         });
         $(window).triggerHandler('resize.jqGrid'); //trigger window resize to make the grid get the correct size
@@ -1284,10 +1284,10 @@
                 }];
 
         //获取时间数组   
-        dayAry.push(startDate.format("MM-DD"));
+        dayAry.push(startDate.format("MM月DD日"));
         for (var i = 0; i < days; i++) {
             var c = startDate.add(1, 'd');
-            dayAry.push(c.format("MM-DD"));
+            dayAry.push(c.format("MM月DD日"));
         }
 
         //设置展示数据
